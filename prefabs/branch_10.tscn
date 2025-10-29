@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://witndceekd8y"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tefeu"]
+top_radius = 0.23
+bottom_radius = 0.23
+height = 3.0
+
+[node name="branch" type="Node3D"]
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52422, 0)
+mesh = SubResource("CylinderMesh_tefeu")
+skeleton = NodePath("../../..")
+
+[node name="connector" type="Node3D" parent="."]
+transform = Transform3D(0.83664, 0.530442, 0.136619, -0.547753, 0.810199, 0.208672, 0, -0.249417, 0.968396, 0.193237, 0.645321, 0)
+
+[node name="connector2" type="Node3D" parent="."]
+transform = Transform3D(0.955061, -0.267373, -0.127943, 0.296408, 0.861507, 0.412247, 3.57264e-09, -0.431645, 0.902044, -0.084201, 2.95441, 0)
+
+[node name="connector3" type="Node3D" parent="."]
+transform = Transform3D(0.992709, 0.114821, -0.0366728, -0.120535, 0.945647, -0.302031, 3.72529e-09, 0.304249, 0.952592, 0.119331, 2.97029, 0)

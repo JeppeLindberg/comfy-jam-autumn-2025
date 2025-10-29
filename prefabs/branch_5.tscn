@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bebgrdderbbep"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_choun"]
+top_radius = 0.15
+bottom_radius = 0.15
+height = 1.8
+
+[node name="branch" type="Node3D"]
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.956, 0)
+mesh = SubResource("CylinderMesh_choun")
+skeleton = NodePath("../../../..")
+
+[node name="connector" type="Node3D" parent="."]
+transform = Transform3D(0.987595, 0.155962, -0.0182027, -0.157021, 0.980937, -0.114487, 0, 0.115925, 0.993258, 0.0265771, 1.73484, 0)

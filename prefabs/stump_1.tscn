@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://djo8u7v67c470"]
+
+[ext_resource type="Script" uid="uid://4jkiu32j3a8p" path="res://scripts/connector.gd" id="1_f8tik"]
+[ext_resource type="Script" uid="uid://ceo5p8u1oc2jh" path="res://scripts/tree_part.gd" id="1_wm8ga"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_o5qli"]
+top_radius = 0.3
+bottom_radius = 0.3
+height = 2.2
+
+[node name="stump" type="Node3D"]
+script = ExtResource("1_wm8ga")
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0423875, 1.07449, 0)
+mesh = SubResource("CylinderMesh_o5qli")
+skeleton = NodePath("../..")
+
+[node name="connector" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.994149, 0.108017, 0, -0.108017, 0.994149, -0.0260136, 2.13899, 0)
+script = ExtResource("1_f8tik")
+
+[node name="connector3" type="Node3D" parent="."]
+transform = Transform3D(0.966622, 0.253393, -0.0378563, -0.256205, 0.956012, -0.142826, -3.72529e-09, 0.147758, 0.989024, 0.176571, 2.12807, 0)
+script = ExtResource("1_f8tik")
+
+[node name="connector2" type="Node3D" parent="."]
+transform = Transform3D(0.958457, -0.285105, 0.0086709, 0.285237, 0.958014, -0.0291361, 0, 0.030399, 0.999538, -0.241345, 1.94534, 0)
+script = ExtResource("1_f8tik")

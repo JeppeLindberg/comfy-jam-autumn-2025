@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://i7sw0cp5moo8"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tipki"]
+top_radius = 0.15
+bottom_radius = 0.15
+height = 3.0
+
+[node name="branch" type="Node3D"]
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52422, 0)
+mesh = SubResource("CylinderMesh_tipki")
+skeleton = NodePath("../../../..")
+
+[node name="connector" type="Node3D" parent="."]
+transform = Transform3D(0.985762, 0.165961, -0.0270165, -0.168145, 0.972955, -0.158386, -1.86265e-09, 0.160674, 0.987008, -0.00566167, 2.96503, 0)
