@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cka13oun4dy67"]
+[gd_scene load_steps=4 format=3 uid="uid://cka13oun4dy67"]
 
 [ext_resource type="Script" uid="uid://4jkiu32j3a8p" path="res://scripts/connector.gd" id="1_5wqde"]
+[ext_resource type="Script" uid="uid://ceo5p8u1oc2jh" path="res://scripts/tree_part.gd" id="1_egj0t"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_0wfyh"]
 top_radius = 0.3
@@ -8,6 +9,8 @@ bottom_radius = 0.3
 height = 1.8
 
 [node name="stump" type="Node3D"]
+script = ExtResource("1_egj0t")
+matter = 1.75
 
 [node name="mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86265e-09, 0.88374, 0)
@@ -16,4 +19,8 @@ skeleton = NodePath("../..")
 
 [node name="connector" type="Node3D" parent="."]
 transform = Transform3D(0.994998, -0.0994622, -0.00926535, 0.0998928, 0.990709, 0.092289, 2.33207e-10, -0.0927529, 0.995689, 1.49012e-08, 1.73418, 0)
+script = ExtResource("1_5wqde")
+
+[node name="connector2" type="Node3D" parent="."]
+transform = Transform3D(0.972586, 0.19177, -0.131529, -0.192798, 0.981226, 0.00499859, 0.130018, 0.0204968, 0.9913, 0.156651, 1.76011, 0.108973)
 script = ExtResource("1_5wqde")

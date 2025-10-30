@@ -15,5 +15,5 @@ func activate():
 	var tree = self
 	while not tree.is_in_group('tree'):
 		tree = tree.get_parent()
-	tree.matter_budget -= matter
+	# tree.matter_budget -= matter
 

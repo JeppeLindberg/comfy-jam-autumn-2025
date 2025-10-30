@@ -26,5 +26,6 @@ main = NodePath("..")
 stump_prefabs = Array[PackedScene]([ExtResource("2_jkv2x"), ExtResource("3_jbj1t"), ExtResource("1_o5qli")])
 branch_prefabs = Array[PackedScene]([ExtResource("5_muem4"), ExtResource("6_dp3eg"), ExtResource("7_0ld40"), ExtResource("8_gqmmt"), ExtResource("9_yc10j"), ExtResource("10_jscy8"), ExtResource("11_pm3ni"), ExtResource("12_y6deb"), ExtResource("13_og1vs"), ExtResource("14_2wyq8")])
 
-[node name="@Node3D@24035" type="Node3D" parent="tree" groups=["tree_part"] instance=ExtResource("2_jkv2x")]
+[node name="stump" type="Node3D" parent="tree" groups=["tree_part"] instance=ExtResource("1_o5qli")]
 script = ExtResource("15_jkv2x")
+matter = 1.5

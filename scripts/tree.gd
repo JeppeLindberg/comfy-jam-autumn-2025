@@ -7,9 +7,8 @@ extends Node3D
 
 @export var stump_prefabs: Array[PackedScene]
 @export var branch_prefabs: Array[PackedScene]
+@export var base_matter_budget = 7.5
 
-
-var matter_budget = 0.0
 
 func _ready():
 	add_to_group('tree', true)
@@ -18,20 +17,46 @@ func recreate():
 	for child in get_children():
 		child.queue_free()
 
-	matter_budget = 3.0
+	var matter_budget = base_matter_budget
 	
-	var new_stump = stump_prefabs[0].instantiate()
+	var new_stump = stump_prefabs.pick_random().instantiate()
 	add_child(new_stump)
 	new_stump.owner = get_tree().edited_scene_root
 	new_stump.activate()
 
+	var i = 0
 	while(matter_budget > 0.0):
-		var new_tree_part = stump_prefabs[0].instantiate()
-		var connector = _get_free_connectors().pick_random()
+		i += 1
+		if i > 100:
+			print('recursion blocker i')
+			return
+
+		var possible_new_parts = []
+		possible_new_parts.append_array(branch_prefabs)
+		possible_new_parts.append_array(stump_prefabs)
+		var new_tree_part = possible_new_parts.pick_random().instantiate()
+
+		var connector = null
+		var j = 0
+		while (connector == null) or (connector.max_sub_part_matter < new_tree_part.matter):
+			connector = _get_free_connectors().pick_random()
+			j += 1
+			if j > 100:
+				# print('recursion blocker j')
+				connector = null
+				break
+
+		if connector == null:
+			new_tree_part.queue_free()
+			continue
+
 		connector.add_child(new_tree_part)
 		new_tree_part.owner = get_tree().edited_scene_root
 		new_tree_part.position = Vector3.ZERO
 		new_tree_part.activate()
+
+		matter_budget -= new_tree_part.matter
+		print(matter_budget)
 
 func _get_free_connectors():
 	var connectors = main.get_children_in_group(self, 'connector')
