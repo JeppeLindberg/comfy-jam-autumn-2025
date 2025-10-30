@@ -5,9 +5,14 @@ extends Node3D
 
 @export_tool_button("Recreate", "Callable") var recreate_callable = recreate
 
+@export var growth_scale: Curve
 @export var stump_prefabs: Array[PackedScene]
 @export var branch_prefabs: Array[PackedScene]
-@export var base_matter_budget = 7.5
+@export var base_matter_budget = 25.0
+
+@export_range(0.0, 1.0) var growth = 1.0
+
+var growth_history = []
 
 
 func _ready():
@@ -65,9 +70,26 @@ func _get_free_connectors():
 			connectors.erase(connectors[i])
 	return connectors
 
+func _update_growth():
+	var tree_parts = main.get_children_in_group(self, 'tree_part')
+	for part in tree_parts:
+		part.set_growth(growth)
+
 func _process(_delta):
+	if growth_history == []:
+		growth_history = [growth, growth]
+
+	growth_history.append(growth)
+	growth_history.pop_front()
+
+	if growth_history[0] != growth_history[1]:
+		_update_growth()
+
 	if Engine.is_editor_hint():
 		pass
 
 	if not Engine.is_editor_hint():
 		pass
+	
+	growth_history.append(growth)
+	growth_history.pop_front()

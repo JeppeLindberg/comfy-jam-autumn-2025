@@ -10,7 +10,7 @@ height = 1.5
 
 [node name="branch" type="Node3D"]
 script = ExtResource("1_gwnor")
-matter = 0.7
+matter = 2.1
 
 [node name="mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.749639, 0)
@@ -18,5 +18,9 @@ mesh = SubResource("CylinderMesh_sugp2")
 skeleton = NodePath("../../..")
 
 [node name="connector" type="Node3D" parent="."]
-transform = Transform3D(0.991794, -0.125465, -0.024542, 0.123661, 0.990208, -0.0647821, 0.0324295, 0.0612156, 0.997598, 0.0946175, 1.60649, -0.0830286)
+transform = Transform3D(0.991794, -0.125465, -0.024542, 0.123661, 0.990208, -0.0647821, 0.0324295, 0.0612156, 0.997598, -0.0256607, 1.39714, -0.0103516)
+script = ExtResource("2_fjgh7")
+
+[node name="connector2" type="Node3D" parent="."]
+transform = Transform3D(0.991794, -0.0985859, -0.0813916, 0.123661, 0.901304, 0.415162, 0.0324295, -0.42182, 0.9061, 0.0522473, 0.792636, -0.0879184)
 script = ExtResource("2_fjgh7")

@@ -10,7 +10,7 @@ height = 1.8
 
 [node name="stump" type="Node3D"]
 script = ExtResource("1_egj0t")
-matter = 1.75
+matter = 2.9
 
 [node name="mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86265e-09, 0.88374, 0)

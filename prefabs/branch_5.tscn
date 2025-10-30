@@ -10,7 +10,7 @@ height = 1.8
 
 [node name="branch" type="Node3D"]
 script = ExtResource("1_o4v0s")
-matter = 0.5
+matter = 2.35
 
 [node name="mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.956, 0)
@@ -19,4 +19,8 @@ skeleton = NodePath("../../../..")
 
 [node name="connector" type="Node3D" parent="."]
 transform = Transform3D(0.987595, 0.155962, -0.0182027, -0.157021, 0.980937, -0.114487, 0, 0.115925, 0.993258, 0.0265771, 1.73484, 0)
+script = ExtResource("2_os0t1")
+
+[node name="connector2" type="Node3D" parent="."]
+transform = Transform3D(0.861381, -0.507633, -0.0182027, 0.502582, 0.856915, -0.114487, 0.0737155, 0.0894685, 0.993258, -0.156612, 0.858209, 0.0818975)
 script = ExtResource("2_os0t1")
