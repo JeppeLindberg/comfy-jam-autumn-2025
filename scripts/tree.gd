@@ -29,6 +29,7 @@ func recreate():
 	new_stump.owner = get_tree().edited_scene_root
 	new_stump.activate()
 
+	var connector_index = 0
 	var i = 0
 	while(matter_budget > 0.0):
 		i += 1
@@ -55,6 +56,10 @@ func recreate():
 			new_tree_part.queue_free()
 			continue
 
+		connector.name = 'branch_'+str(connector_index)
+		connector_index += 1
+		connector.owner = get_tree().edited_scene_root
+		
 		connector.add_child(new_tree_part)
 		new_tree_part.owner = get_tree().edited_scene_root
 		new_tree_part.position = Vector3.ZERO
@@ -90,6 +95,3 @@ func _process(_delta):
 
 	if not Engine.is_editor_hint():
 		pass
-	
-	growth_history.append(growth)
-	growth_history.pop_front()

@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0p80on5l55d1"]
+
+[ext_resource type="Script" uid="uid://70ql1ici1jp1" path="res://scripts/ui_parameter.gd" id="1_dd1g0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_muem4"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_muem4"]
+
+[node name="parameter" type="VBoxContainer" node_paths=PackedStringArray("filler", "title")]
+script = ExtResource("1_dd1g0")
+filler = NodePath("meter_bg_container/meter_point/filler")
+title = NodePath("title")
+
+[node name="title" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(0, 11.5)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 7
+text = "Sun"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="meter_bg_container" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="meter_bg" type="Panel" parent="meter_bg_container"]
+self_modulate = Color(0.27347, 0.0766174, 0.189602, 1)
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muem4")
+
+[node name="meter_point" type="HBoxContainer" parent="meter_bg_container"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="filler" type="Panel" parent="meter_bg_container/meter_point"]
+custom_minimum_size = Vector2(19, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_muem4")
+
+[node name="center" type="CenterContainer" parent="meter_bg_container/meter_point"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+use_top_left = true
+
+[node name="point" type="Panel" parent="meter_bg_container/meter_point/center"]
+self_modulate = Color(0.695565, 0.27157, 0.510685, 1)
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_muem4")
