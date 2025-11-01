@@ -28,6 +28,9 @@ func _get_tree():
 	return tree
 
 func set_growth(growth):
+	if self.is_queued_for_deletion():
+		return
+
 	var calc_growth = growth * 2.0
 	calc_growth -= depth*0.1
 	if stump:

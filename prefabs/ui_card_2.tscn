@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://crlofm1hgg0cc"]
+
+[ext_resource type="Script" uid="uid://mb16bcpybgi1" path="res://scripts/ui_card.gd" id="1_j5ppj"]
+
+[node name="card_2" type="Button" node_paths=PackedStringArray("text_label")]
+custom_minimum_size = Vector2(127.5, 136)
+script = ExtResource("1_j5ppj")
+card_text = "[color=green]+ wind resistance[/color]
+[color=red]- water absorption[/color]"
+wind_resistance_delta = 1
+water_absorption_delta = -1
+text_label = NodePath("text")
+
+[node name="center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="text" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "[color=green]test[/color]
+[color=red]test[/color]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

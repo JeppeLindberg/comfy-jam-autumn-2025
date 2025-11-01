@@ -1,6 +1,8 @@
 @tool
 extends Node3D
 
+@onready var cards = get_node('/root/main/cards')
+
 @export var main: Node3D
 
 @export_tool_button("Recreate", "Callable") var recreate_callable = recreate
@@ -11,12 +13,19 @@ extends Node3D
 @export var base_matter_budget = 25.0
 
 @export_range(0.0, 1.0) var growth = 1.0
-
-var growth_history = []
+var prev_growth = 0.0
 
 
 func _ready():
 	add_to_group('tree', true)
+
+	if not Engine.is_editor_hint():
+		restart()
+
+func restart():
+	growth = 0.0
+
+	recreate()
 
 func recreate():
 	for child in get_children():
@@ -67,6 +76,8 @@ func recreate():
 
 		matter_budget -= new_tree_part.matter
 		print(matter_budget)
+	
+	prev_growth = -1.0
 
 func _get_free_connectors():
 	var connectors = main.get_children_in_group(self, 'connector')
@@ -80,18 +91,25 @@ func _update_growth():
 	for part in tree_parts:
 		part.set_growth(growth)
 
-func _process(_delta):
-	if growth_history == []:
-		growth_history = [growth, growth]
+func _done_growing():
+	if Engine.is_editor_hint():
+		return;
+	
+	if not cards.cards_available():
+		cards.generate_cards()
 
-	growth_history.append(growth)
-	growth_history.pop_front()
+func _process(delta):
+	if not Engine.is_editor_hint():
+		growth += clampf(0.1 * delta, 0.0, 1.0)
+		if growth > 1.0:
+			growth = 1.0
 
-	if growth_history[0] != growth_history[1]:
+	if prev_growth != growth:
 		_update_growth()
+	else:
+		_done_growing()
 
 	if Engine.is_editor_hint():
 		pass
-
-	if not Engine.is_editor_hint():
-		pass
+	
+	prev_growth = growth

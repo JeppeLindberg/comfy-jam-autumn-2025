@@ -3,6 +3,7 @@ extends Button
 
 @onready var stats = get_node('/root/main/stats')
 @onready var cards = get_node('/root/main/cards')
+@onready var tree = get_node('/root/main/tree')
 
 @export_multiline var card_text = 'text'
 
@@ -29,6 +30,8 @@ func _on_pressed() -> void:
 	stats.water_absorption += water_absorption_delta
 
 	cards.clear_cards()
+
+	tree.restart()
 
 
 func _on_button_down() -> void:
