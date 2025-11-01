@@ -52,10 +52,11 @@ shadow_enabled = true
 transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, 0, 5.46399, 44.5492)
 fov = 20.0
 
-[node name="parameters" type="Node3D" parent="." node_paths=PackedStringArray("sun_ui_parameter")]
+[node name="parameters" type="Node3D" parent="." node_paths=PackedStringArray("sun_ui_parameter", "wind_ui_parameter", "water_ui_parameter")]
 script = ExtResource("2_dp3eg")
-sun = 0.5
 sun_ui_parameter = NodePath("../ui/panel/container/parameter_panel/parameter_container/parameter_sun")
+wind_ui_parameter = NodePath("../ui/panel/container/parameter_panel/parameter_container/parameter_wind")
+water_ui_parameter = NodePath("../ui/panel/container/parameter_panel/parameter_container/parameter_water")
 
 [node name="tree" type="Node3D" parent="." node_paths=PackedStringArray("main") groups=["tree"]]
 script = ExtResource("1_0wfyh")
@@ -125,6 +126,7 @@ transform = Transform3D(0.991794, -0.0985859, -0.0813916, 0.123661, 0.901304, 0.
 script = ExtResource("17_muem4")
 
 [node name="branch" parent="tree/@Node3D@21962/branch_3/branch/branch_5/branch/branch_8" groups=["tree_part"] instance=ExtResource("8_gqmmt")]
+transform = Transform3D(1, -1.30385e-08, 3.72529e-09, 1.30385e-08, 1, 0, -3.72529e-09, 4.85722e-17, 1, 0, 0, 0)
 
 [node name="branch_0" type="Node3D" parent="tree/@Node3D@21962" groups=["connector"]]
 transform = Transform3D(0.958457, -0.285105, 0.0086709, 0.285237, 0.958014, -0.0291361, 0, 0.030399, 0.999538, -0.241345, 1.94534, 0)
@@ -165,12 +167,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 50
-alignment = 1
+theme_override_constants/separation = 10
 
 [node name="parameter_panel" type="Panel" parent="ui/panel/container"]
 self_modulate = Color(0.612402, 0.38127, 0.335364, 1)
-custom_minimum_size = Vector2(0, 110)
+custom_minimum_size = Vector2(0, 98)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_muem4")
 
@@ -197,8 +198,51 @@ layout_mode = 2
 meter = -0.05
 title_tex = "Water"
 
+[node name="stats" type="Panel" parent="ui/panel/container"]
+self_modulate = Color(0.612402, 0.38127, 0.335364, 1)
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muem4")
+
+[node name="margin" type="MarginContainer" parent="ui/panel/container/stats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 5
+
+[node name="container" type="VBoxContainer" parent="ui/panel/container/stats/margin"]
+layout_mode = 2
+alignment = 1
+
+[node name="stats_text" type="RichTextLabel" parent="ui/panel/container/stats/margin/container"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 7
+text = "text"
+fit_content = true
+
 [node name="card_panel" type="Panel" parent="ui/panel/container"]
 self_modulate = Color(0.612402, 0.38127, 0.335364, 1)
-custom_minimum_size = Vector2(0, 110)
+custom_minimum_size = Vector2(0, 136)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muem4")
+
+[node name="margin" type="MarginContainer" parent="ui/panel/container/card_panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = -80
+
+[node name="card_panel" type="Panel" parent="ui/panel/container/card_panel/margin"]
+self_modulate = Color(0.612402, 0.38127, 0.335364, 1)
+custom_minimum_size = Vector2(0, 136)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_muem4")

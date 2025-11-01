@@ -8,6 +8,7 @@ bg_color = Color(1, 1, 1, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_muem4"]
 
 [node name="parameter" type="VBoxContainer" node_paths=PackedStringArray("filler", "title")]
+theme_override_constants/separation = 0
 script = ExtResource("1_dd1g0")
 filler = NodePath("meter_bg_container/meter_point/filler")
 title = NodePath("title")
@@ -38,7 +39,7 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="filler" type="Panel" parent="meter_bg_container/meter_point"]
-custom_minimum_size = Vector2(19, 0)
+custom_minimum_size = Vector2(9.5, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_muem4")
 

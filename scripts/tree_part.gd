@@ -14,14 +14,19 @@ func activate():
 		if child.has_method('activate'):
 			child.activate()
 	
-	tree = self
-	depth = 0.0
-	while not tree.is_in_group('tree'):
-		depth += 1.0
-		tree = tree.get_parent()
+	_get_tree()
+
+func _get_tree():
+	if tree == self:
+		depth = 0.0
+		while not tree.is_in_group('tree'):
+			depth += 1.0
+			tree = tree.get_parent()
+	
+	return tree
 
 func set_growth(growth):
 	var calc_growth = growth * 2.0
 	calc_growth -= depth*0.1
-	scale = Vector3.ONE * tree.growth_scale.sample(clamp(calc_growth, 0.0, 1.0))
+	scale = Vector3.ONE * _get_tree().growth_scale.sample(clamp(calc_growth, 0.0, 1.0))
 
