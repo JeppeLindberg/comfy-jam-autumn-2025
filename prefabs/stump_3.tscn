@@ -10,6 +10,7 @@ height = 3.5
 
 [node name="stump" type="Node3D"]
 script = ExtResource("1_cs1rx")
+stump = true
 matter = 3.0
 
 [node name="mesh" type="MeshInstance3D" parent="."]

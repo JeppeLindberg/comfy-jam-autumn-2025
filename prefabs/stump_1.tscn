@@ -10,6 +10,7 @@ height = 2.2
 
 [node name="stump" type="Node3D"]
 script = ExtResource("1_wm8ga")
+stump = true
 matter = 2.8
 
 [node name="mesh" type="MeshInstance3D" parent="."]

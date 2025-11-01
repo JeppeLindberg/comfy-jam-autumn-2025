@@ -1,6 +1,9 @@
 extends Button
 
 
+@onready var stats = get_node('/root/main/stats')
+@onready var cards = get_node('/root/main/cards')
+
 @export_multiline var card_text = 'text'
 
 @export var sun_absorption_delta: int = 0
@@ -21,7 +24,11 @@ func _process(_delta: float) -> void:
 
 
 func _on_pressed() -> void:
-	print('_on_pressed')
+	stats.sun_absorption += sun_absorption_delta
+	stats.wind_resistance += wind_resistance_delta
+	stats.water_absorption += water_absorption_delta
+
+	cards.clear_cards()
 
 
 func _on_button_down() -> void:
