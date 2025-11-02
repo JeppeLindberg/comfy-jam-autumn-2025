@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var parameters = get_node('/root/main/parameters')
+@onready var main = get_node('/root/main')
 
 @export var sun_absorption: int = 0
 @export var wind_resistance: int = 0
@@ -29,15 +30,15 @@ func _update_stats():
 
 
 func get_growth_factor():
-	var sun_factor_calc = (sun_absorption + 3.0) * inverse_lerp(-1.0, 1.0, parameters.sun)
+	var sun_factor_calc = (sun_absorption + 3.0) * inverse_lerp(-1.0, 1.0, parameters.sun_amount)
 	sun_factor_calc = clampf(sun_factor_calc, 0.0, 10.0)
 
-	var wind_factor_calc = (wind_resistance + 3.0) * inverse_lerp(-1.0, 1.0, parameters.wind)
+	var wind_factor_calc = (wind_resistance + 3.0) * inverse_lerp(-1.0, 1.0, parameters.wind_amount)
 	wind_factor_calc = clampf(wind_factor_calc, 0.0, 10.0)
 	
-	var water_factor_calc = (water_absorption + 3.0) * inverse_lerp(-1.0, 1.0, parameters.water)
+	var water_factor_calc = (water_absorption + 3.0) * inverse_lerp(-1.0, 1.0, parameters.water_amount)
 	water_factor_calc = clampf(water_factor_calc, 0.0, 10.0)
 	
-	return clampf((sun_factor_calc + wind_factor_calc + water_factor_calc) / 9.0, 0.0, 10.0)
+	return main.time_dialation * clampf((sun_factor_calc + wind_factor_calc + water_factor_calc) / 9.0, 0.0, 10.0)
 
 

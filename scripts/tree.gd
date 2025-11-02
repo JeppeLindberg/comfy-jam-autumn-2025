@@ -1,8 +1,8 @@
 @tool
 extends Node3D
 
-@onready var cards = get_node('/root/main/cards')
-@onready var stats = get_node('/root/main/stats')
+var cards
+var stats
 
 @export var main: Node3D
 
@@ -17,16 +17,21 @@ extends Node3D
 var prev_growth = 0.0
 
 @export var secs_to_full_grown = 13.0
+@export var stop_growing_at_hour = 20.0
 
 
 func _ready():
 	add_to_group('tree', true)
 
 	if not Engine.is_editor_hint():
+		cards = get_node('/root/main/cards')
+		stats = get_node('/root/main/stats')
+
 		restart()
 
 func restart():
-	growth = 0.0
+	growth = 0.05
+	main.hours = 0.0
 
 	recreate()
 
@@ -107,7 +112,9 @@ func _process(delta):
 		if growth > 1.0:
 			growth = 1.0
 
-	if prev_growth != growth:
+	if (not Engine.is_editor_hint()) and (main.hour_of_day() >= stop_growing_at_hour):
+		_done_growing()
+	elif prev_growth != growth:
 		_update_growth()
 	elif growth > 0.01:
 		_done_growing()

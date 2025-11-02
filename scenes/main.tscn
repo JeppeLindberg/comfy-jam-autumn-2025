@@ -1,12 +1,14 @@
-[gd_scene load_steps=29 format=3 uid="uid://bb7m2rw06emdx"]
+[gd_scene load_steps=38 format=3 uid="uid://bb7m2rw06emdx"]
 
 [ext_resource type="Script" uid="uid://ck78o8i26mlcw" path="res://scripts/tree.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://ewvq7sqp0mes" path="res://scripts/main.gd" id="1_muem4"]
 [ext_resource type="PackedScene" uid="uid://c4n2e14jc44lm" path="res://prefabs/stump_3.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://bwk04q8vx3wfd" path="res://scripts/parameters.gd" id="2_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://djo8u7v67c470" path="res://prefabs/stump_1.tscn" id="2_jkv2x"]
+[ext_resource type="Script" uid="uid://cpt3ruiu37ofl" path="res://scripts/daytime_rotator.gd" id="2_y6deb"]
 [ext_resource type="Script" uid="uid://bdy2ugigvwukk" path="res://scripts/stats.gd" id="3_gqmmt"]
 [ext_resource type="PackedScene" uid="uid://cka13oun4dy67" path="res://prefabs/stump_2.tscn" id="3_jbj1t"]
+[ext_resource type="Script" uid="uid://d06mxg3ioqxoq" path="res://scripts/daytime_animation.gd" id="3_og1vs"]
 [ext_resource type="Script" uid="uid://ctjvw4xo7s8ui" path="res://scripts/cards.gd" id="4_yc10j"]
 [ext_resource type="PackedScene" uid="uid://bnt3ngxfcndaw" path="res://prefabs/branch_1.tscn" id="5_muem4"]
 [ext_resource type="PackedScene" uid="uid://coh2ohqj4pdbt" path="res://prefabs/branch_2.tscn" id="6_dp3eg"]
@@ -36,6 +38,111 @@ background_mode = 2
 sky = SubResource("Sky_muem4")
 tonemap_mode = 2
 
+[sub_resource type="Animation" id="Animation_vxglm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.00021]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:light_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.886725, 0.843523, 0.758978, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2wyq8"]
+resource_name = "normal"
+length = 24.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.8, 9.4, 13.0667, 19.4333),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2),
+"update": 0,
+"values": [0.1, 0.1, 1.00021, 1.0, 0.7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:light_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.09112, 12.9489, 18.3667, 20.4, 23.686),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2),
+"update": 0,
+"values": [Color(0.948229, 0.844186, 0.697489, 1), Color(0.886725, 0.843523, 0.758978, 1), Color(0.965103, 0.62643, 0.692171, 1), Color(0.955875, 0.289043, 0.42064, 1), Color(0.0163219, 0.276853, 0.484978, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vxglm"]
+_data = {
+&"RESET": SubResource("Animation_vxglm"),
+&"normal": SubResource("Animation_2wyq8")
+}
+
+[sub_resource type="Animation" id="Animation_og1vs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_y6deb"]
+resource_name = "normal"
+length = 24.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0999999, 8.03333, 16.0333, 23),
+"transitions": PackedFloat32Array(-2, -2, -2, -2),
+"update": 0,
+"values": [1.0, 0.0, -0.388448, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_og1vs"]
+_data = {
+&"RESET": SubResource("Animation_og1vs"),
+&"normal": SubResource("Animation_y6deb")
+}
+
+[sub_resource type="Curve" id="Curve_y6deb"]
+_limits = [0.0, 1.0, 0.0, 24.0]
+_data = [Vector2(0, 0.11236), 0.0, 0.0, 0, 0, Vector2(2.7541, 0.191011), 0.0524851, 0.0524851, 0, 0, Vector2(5.80328, 0.573034), 0.21089, 0.21089, 0, 0, Vector2(12, 1), 0.0, 0.0, 0, 0, Vector2(18.1967, 0.662921), -0.185627, -0.185627, 0, 0, Vector2(21.0492, 0.191011), -0.0428371, -0.0428371, 0, 0, Vector2(24, 0.11236), 0.0, 0.0, 0, 0]
+point_count = 7
+
 [sub_resource type="Curve" id="Curve_jkv2x"]
 _data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(0.292553, 0.651685), 1.1522, 1.1522, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
@@ -45,13 +152,40 @@ bg_color = Color(1, 1, 1, 1)
 
 [node name="main" type="Node3D"]
 script = ExtResource("1_muem4")
+seconds_per_day = 24.0
+hours = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dp3eg")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+[node name="pivot" type="Node3D" parent="."]
+transform = Transform3D(0.729721, 0.683745, 0, -0.683745, 0.729721, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="directional_light" type="Node3D" parent="pivot"]
+script = ExtResource("2_y6deb")
+
+[node name="sun" type="DirectionalLight3D" parent="pivot/directional_light"]
+transform = Transform3D(-0.272417, 0.210577, -0.938854, -0.960497, -0.117186, 0.252413, -0.0568678, 0.970528, 0.234182, 0, 0, 0)
+light_color = Color(0.886725, 0.843523, 0.758978, 1)
+light_energy = 1.00021
 shadow_enabled = true
+
+[node name="sun" type="AnimationPlayer" parent="pivot/directional_light/sun"]
+libraries = {
+&"": SubResource("AnimationLibrary_vxglm")
+}
+script = ExtResource("3_og1vs")
+
+[node name="moon" type="DirectionalLight3D" parent="pivot/directional_light"]
+transform = Transform3D(-0.225234, 0.2827, 0.932389, -0.439117, 0.824819, -0.356161, -0.869739, -0.489647, -0.0616391, 0, 0, 0)
+light_color = Color(0.0925025, 0.238244, 0.378248, 1)
+shadow_enabled = true
+
+[node name="animation" type="AnimationPlayer" parent="pivot/directional_light/moon"]
+libraries = {
+&"": SubResource("AnimationLibrary_og1vs")
+}
+script = ExtResource("3_og1vs")
 
 [node name="camera" type="Camera3D" parent="."]
 transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, 0, 5.46399, 44.5492)
@@ -59,11 +193,10 @@ fov = 20.0
 
 [node name="parameters" type="Node3D" parent="." node_paths=PackedStringArray("sun_ui_parameter", "wind_ui_parameter", "water_ui_parameter")]
 script = ExtResource("2_dp3eg")
-sun = 1.0
-wind = -1.0
 sun_ui_parameter = NodePath("../ui/panel/container/parameter_panel/parameter_container/parameter_sun")
 wind_ui_parameter = NodePath("../ui/panel/container/parameter_panel/parameter_container/parameter_wind")
 water_ui_parameter = NodePath("../ui/panel/container/parameter_panel/parameter_container/parameter_water")
+sun_amount_day_curve = SubResource("Curve_y6deb")
 
 [node name="stats" type="Node3D" parent="." node_paths=PackedStringArray("stats_text")]
 script = ExtResource("3_gqmmt")
