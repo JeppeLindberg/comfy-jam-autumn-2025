@@ -2,6 +2,7 @@
 extends Node3D
 
 @onready var cards = get_node('/root/main/cards')
+@onready var stats = get_node('/root/main/stats')
 
 @export var main: Node3D
 
@@ -14,6 +15,8 @@ extends Node3D
 
 @export_range(0.0, 1.0) var growth = 1.0
 var prev_growth = 0.0
+
+@export var secs_to_full_grown = 13.0
 
 
 func _ready():
@@ -100,13 +103,13 @@ func _done_growing():
 
 func _process(delta):
 	if not Engine.is_editor_hint():
-		growth += clampf(0.1 * delta, 0.0, 1.0)
+		growth += clampf(stats.get_growth_factor() *( 1.0/secs_to_full_grown )* delta, 0.0, 1.0)
 		if growth > 1.0:
 			growth = 1.0
 
 	if prev_growth != growth:
 		_update_growth()
-	else:
+	elif growth > 0.01:
 		_done_growing()
 
 	if Engine.is_editor_hint():

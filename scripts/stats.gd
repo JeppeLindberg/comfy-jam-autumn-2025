@@ -1,5 +1,7 @@
 extends Node3D
 
+@onready var parameters = get_node('/root/main/parameters')
+
 @export var sun_absorption: int = 0
 @export var wind_resistance: int = 0
 @export var water_absorption: int = 0
@@ -22,54 +24,20 @@ func _process(_delta: float) -> void:
 
 
 func _update_stats():
-	var replace_txt = ''
-	stats_text.text = ''
-	
-	if sun_absorption > 0:
-		replace_txt = ''
-		for i in range(sun_absorption):
-			replace_txt += '+'
-		if stats_text.text != '':
-			stats_text.text += '\n'
-		stats_text.text += '[color=green]'+replace_txt+' sun absorption[/color]'
-	if wind_resistance > 0:
-		replace_txt = ''
-		for i in range(wind_resistance):
-			replace_txt += '+'
-		if stats_text.text != '':
-			stats_text.text += '\n'
-		stats_text.text += '[color=green]'+replace_txt+' wind resistance[/color]'
-	if water_absorption > 0:
-		replace_txt = ''
-		for i in range(water_absorption):
-			replace_txt += '+'
-		if stats_text.text != '':
-			stats_text.text += '\n'
-		stats_text.text += '[color=green]'+replace_txt+' water absorption[/color]'
-
-	if sun_absorption < 0:
-		replace_txt = ''
-		for i in range(-sun_absorption):
-			replace_txt += '-'
-		if stats_text.text != '':
-			stats_text.text += '\n'
-		stats_text.text += '[color=red]'+replace_txt+' sun absorption[/color]'
-	if wind_resistance < 0:
-		replace_txt = ''
-		for i in range(-wind_resistance):
-			replace_txt += '-'
-		if stats_text.text != '':
-			stats_text.text += '\n'
-		stats_text.text += '[color=red]'+replace_txt+' wind resistance[/color]'
-	if water_absorption < 0:
-		replace_txt = ''
-		for i in range(-water_absorption):
-			replace_txt += '-'
-		if stats_text.text != '':
-			stats_text.text += '\n'
-		stats_text.text += '[color=red]'+replace_txt+' water absorption[/color]'
-		 
 	print('sun_absorption: '+str(sun_absorption)+' wind_resistance: '+str(wind_resistance)+' water_absorption: '+str(water_absorption))
+	stats_text.update()
 
+
+func get_growth_factor():
+	var sun_factor_calc = (sun_absorption + 3.0) * inverse_lerp(-1.0, 1.0, parameters.sun)
+	sun_factor_calc = clampf(sun_factor_calc, 0.0, 10.0)
+
+	var wind_factor_calc = (wind_resistance + 3.0) * inverse_lerp(-1.0, 1.0, parameters.wind)
+	wind_factor_calc = clampf(wind_factor_calc, 0.0, 10.0)
+	
+	var water_factor_calc = (water_absorption + 3.0) * inverse_lerp(-1.0, 1.0, parameters.water)
+	water_factor_calc = clampf(water_factor_calc, 0.0, 10.0)
+	
+	return clampf((sun_factor_calc + wind_factor_calc + water_factor_calc) / 9.0, 0.0, 10.0)
 
 

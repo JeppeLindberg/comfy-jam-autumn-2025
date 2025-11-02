@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bb7m2rw06emdx"]
+[gd_scene load_steps=29 format=3 uid="uid://bb7m2rw06emdx"]
 
 [ext_resource type="Script" uid="uid://ck78o8i26mlcw" path="res://scripts/tree.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://ewvq7sqp0mes" path="res://scripts/main.gd" id="1_muem4"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://d0p80on5l55d1" path="res://prefabs/ui_parameter.tscn" id="17_dp3eg"]
 [ext_resource type="Script" uid="uid://4jkiu32j3a8p" path="res://scripts/connector.gd" id="17_muem4"]
 [ext_resource type="PackedScene" uid="uid://couusae3a5or8" path="res://prefabs/ui_card_1.tscn" id="20_gqmmt"]
+[ext_resource type="Script" uid="uid://dw6h3p0rj8iau" path="res://scripts/ui_stats_text.gd" id="23_pm3ni"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jbj1t"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -58,6 +59,8 @@ fov = 20.0
 
 [node name="parameters" type="Node3D" parent="." node_paths=PackedStringArray("sun_ui_parameter", "wind_ui_parameter", "water_ui_parameter")]
 script = ExtResource("2_dp3eg")
+sun = 1.0
+wind = -1.0
 sun_ui_parameter = NodePath("../ui/panel/container/parameter_panel/parameter_container/parameter_sun")
 wind_ui_parameter = NodePath("../ui/panel/container/parameter_panel/parameter_container/parameter_wind")
 water_ui_parameter = NodePath("../ui/panel/container/parameter_panel/parameter_container/parameter_water")
@@ -78,6 +81,7 @@ growth_scale = SubResource("Curve_jkv2x")
 stump_prefabs = Array[PackedScene]([ExtResource("2_jkv2x"), ExtResource("3_jbj1t"), ExtResource("1_o5qli")])
 branch_prefabs = Array[PackedScene]([ExtResource("5_muem4"), ExtResource("6_dp3eg"), ExtResource("7_0ld40"), ExtResource("8_gqmmt"), ExtResource("9_yc10j"), ExtResource("10_jscy8"), ExtResource("11_pm3ni"), ExtResource("12_y6deb"), ExtResource("13_og1vs"), ExtResource("14_2wyq8")])
 growth = 9.6
+secs_to_full_grown = 20.0
 
 [node name="stump" parent="tree" groups=["tree_part"] instance=ExtResource("2_jkv2x")]
 top_level = true
@@ -281,6 +285,7 @@ bbcode_enabled = true
 text = "[color=green]+ sun absorption[/color]
 [color=red]- wind resistance[/color]"
 fit_content = true
+script = ExtResource("23_pm3ni")
 
 [node name="card_panel" type="Panel" parent="ui/panel/container"]
 self_modulate = Color(0.612402, 0.38127, 0.335364, 1)
