@@ -16,7 +16,8 @@ func _get_tree():
 	if tree == self:
 		depth = 0.0
 		while not tree.is_in_group('tree'):
-			depth += 1.0
+			if tree.is_in_group('tree_part'):
+				depth += 1.0
 			tree = tree.get_parent()
 	
 	return tree
@@ -32,16 +33,10 @@ func set_growth(growth):
 	if self.is_queued_for_deletion():
 		return
 
-	var calc_growth = growth * 5.0 + 0.5
-	calc_growth -= depth*0.1
+	var calc_growth = growth * 5.0 + 2.0
+	calc_growth -= depth*1.0
 
-	for leaf in _get_main().get_children_in_group(self, 'leaf'):
+	for leaf in _get_main().get_children_in_group(self, 'leaf'):		
 		leaf.scale = leaf.get_base_scale() * clampf(calc_growth, 0.0, 1.0)
-		calc_growth -= 1.0
+		calc_growth -= 0.5
 
-func _process(_delta: float) -> void:
-	var parent = get_parent()
-	if not parent is Node3D:
-		return
-	global_position = get_parent().global_position
-	global_rotation = get_parent().global_rotation

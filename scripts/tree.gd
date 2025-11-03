@@ -32,7 +32,7 @@ func _ready():
 		restart()
 
 func restart():
-	growth = 0.05
+	growth = 0.00
 	main.hours = 0.0
 
 	recreate()

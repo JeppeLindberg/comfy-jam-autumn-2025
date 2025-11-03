@@ -35,12 +35,12 @@ func set_growth(growth):
 	calc_growth -= depth*0.1
 	if stump:
 		calc_growth *= 0.5
-	var growth_y = _get_tree().growth_scale.sample(clamp(calc_growth, 0.0, 1.0))
-	var growth_x = _get_tree().growth_scale.sample(clamp(calc_growth * 0.7, 0.0, 1.0))
-	scale = Vector3(growth_x, growth_y, growth_x)
+	var growth_vert = _get_tree().growth_scale.sample(clamp(calc_growth, 0.0, 1.0))
+	var growth_hor = _get_tree().growth_scale.sample(clamp(calc_growth * 0.7, 0.0, 1.0))
+	scale = Vector3(growth_hor, growth_vert, growth_hor)
 
 	for child in get_children():
-		if child.is_in_group('connector'):
+		if child.is_in_group('connector') or child.is_in_group('leaf_cluster_connector'):
 			for connector_child in child.get_children():
 				if connector_child.top_level:
 					connector_child.global_position = child.global_position

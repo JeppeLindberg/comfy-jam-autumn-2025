@@ -26,6 +26,6 @@ func _process(_delta: float) -> void:
 	wind_ui_parameter.meter = wind_meter
 	water_ui_parameter.meter = water_meter
 
-	sun_amount = sun_meter * sun_amount_day_curve.sample(main.hour_of_day())
+	sun_amount = sun_meter * sun_amount_day_curve.sample(main.hour_of_day()) * 1.5
 	wind_amount = wind_meter
 	water_amount = water_meter
