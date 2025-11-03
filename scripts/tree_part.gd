@@ -39,9 +39,10 @@ func set_growth(growth):
 	var growth_x = _get_tree().growth_scale.sample(clamp(calc_growth * 0.7, 0.0, 1.0))
 	scale = Vector3(growth_x, growth_y, growth_x)
 
-	for connector in _get_tree().main.get_children_in_group(self, 'connector'):
-		for child in connector.get_children():
-			if child.top_level:
-				child.global_position = connector.global_position
-				child.global_rotation = connector.global_rotation
+	for child in get_children():
+		if child.is_in_group('connector'):
+			for connector_child in child.get_children():
+				if connector_child.top_level:
+					connector_child.global_position = child.global_position
+					connector_child.global_rotation = child.global_rotation
 

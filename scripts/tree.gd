@@ -11,6 +11,8 @@ var stats
 @export var growth_scale: Curve
 @export var stump_prefabs: Array[PackedScene]
 @export var branch_prefabs: Array[PackedScene]
+@export var leaf_cluster_prefabs: Array[PackedScene]
+
 @export var base_matter_budget = 25.0
 
 @export_range(0.0, 1.0) var growth = 1.0
@@ -73,7 +75,7 @@ func recreate():
 			new_tree_part.queue_free()
 			continue
 
-		connector.name = 'branch_'+str(connector_index)
+		connector.name = 'connector_'+str(connector_index)
 		connector_index += 1
 		connector.owner = get_tree().edited_scene_root
 		
@@ -82,8 +84,22 @@ func recreate():
 		new_tree_part.position = Vector3.ZERO
 		new_tree_part.activate()
 
+		var no_of_leaf_clusters = randi_range(1,3)
+		while no_of_leaf_clusters > 0:
+			var leaf_connector = _get_free_leaf_connector(new_tree_part)
+			if leaf_connector == null:
+				break
+			
+			var new_leaf_cluster = leaf_cluster_prefabs.pick_random().instantiate()
+			leaf_connector.name = 'leaf_connector_'+str(connector_index)
+			connector_index+= 1
+			leaf_connector.add_child(new_leaf_cluster)
+			leaf_connector.owner = get_tree().edited_scene_root
+
+			no_of_leaf_clusters -= 1
+
 		matter_budget -= new_tree_part.matter
-		print(matter_budget)
+		# print(matter_budget)
 	
 	prev_growth = -1.0
 
@@ -94,9 +110,21 @@ func _get_free_connectors():
 			connectors.erase(connectors[i])
 	return connectors
 
+func _get_free_leaf_connector(tree_part):
+	var leaf_connectors = []
+	for child in tree_part.get_children():
+		if child.is_in_group('leaf_cluster_connector') and (child.get_children() == []):
+			leaf_connectors.append(child)
+	if leaf_connectors == []:
+		return null
+	return leaf_connectors.pick_random()		
+
 func _update_growth():
 	var tree_parts = main.get_children_in_group(self, 'tree_part')
 	for part in tree_parts:
+		part.set_growth(growth)
+	var leaf_clusters = main.get_children_in_group(self, 'leaf_cluster')
+	for part in leaf_clusters:
 		part.set_growth(growth)
 
 func _done_growing():

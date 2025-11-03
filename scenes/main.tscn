@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bb7m2rw06emdx"]
+[gd_scene load_steps=44 format=3 uid="uid://bb7m2rw06emdx"]
 
 [ext_resource type="Script" uid="uid://ck78o8i26mlcw" path="res://scripts/tree.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://ewvq7sqp0mes" path="res://scripts/main.gd" id="1_muem4"]
@@ -24,8 +24,10 @@
 [ext_resource type="PackedScene" uid="uid://d0p80on5l55d1" path="res://prefabs/ui_parameter.tscn" id="17_dp3eg"]
 [ext_resource type="Script" uid="uid://4jkiu32j3a8p" path="res://scripts/connector.gd" id="17_muem4"]
 [ext_resource type="PackedScene" uid="uid://couusae3a5or8" path="res://prefabs/ui_card_1.tscn" id="20_gqmmt"]
+[ext_resource type="PackedScene" uid="uid://dvknk446o5hw3" path="res://prefabs/leaf_cluster_1.tscn" id="23_2wyq8"]
 [ext_resource type="Script" uid="uid://dw6h3p0rj8iau" path="res://scripts/ui_stats_text.gd" id="23_pm3ni"]
-[ext_resource type="PackedScene" uid="uid://dvknk446o5hw3" path="res://prefabs/leaf_cluster_1.tscn" id="24_2wyq8"]
+[ext_resource type="Script" uid="uid://ceo5p8u1oc2jh" path="res://scripts/tree_part.gd" id="24_2f3dj"]
+[ext_resource type="Script" uid="uid://b1wsaknt8lgf3" path="res://scripts/leaf_cluster_connector.gd" id="26_2f3dj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jbj1t"]
 sky_top_color = Color(0.581293, 0.913401, 0.941485, 1)
@@ -264,7 +266,7 @@ point_count = 3
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_muem4"]
 bg_color = Color(1, 1, 1, 1)
 
-[node name="main" type="Node3D"]
+[node name="main" type="Node3D" groups=["main"]]
 script = ExtResource("1_muem4")
 seconds_per_day = 24.0
 hours = null
@@ -322,9 +324,6 @@ sun_amount_day_curve = SubResource("Curve_y6deb")
 script = ExtResource("3_gqmmt")
 stats_text = NodePath("../ui/panel/container/stats/margin/container/stats_text")
 
-[node name="leaf_cluster_1" parent="." instance=ExtResource("24_2wyq8")]
-transform = Transform3D(0.548045, 0.235898, -0.802495, 0, 0.959408, 0.282023, 0.836449, -0.154561, 0.525799, 0.117324, 2.34013, -0.371446)
-
 [node name="cards" type="Node3D" parent="." node_paths=PackedStringArray("cards_container")]
 script = ExtResource("4_yc10j")
 cards_container = NodePath("../ui/panel/container/card_panel/margin/card_panel/container")
@@ -336,123 +335,264 @@ main = NodePath("..")
 growth_scale = SubResource("Curve_jkv2x")
 stump_prefabs = Array[PackedScene]([ExtResource("2_jkv2x"), ExtResource("3_jbj1t"), ExtResource("1_o5qli")])
 branch_prefabs = Array[PackedScene]([ExtResource("5_muem4"), ExtResource("6_dp3eg"), ExtResource("7_0ld40"), ExtResource("8_gqmmt"), ExtResource("9_yc10j"), ExtResource("10_jscy8"), ExtResource("11_pm3ni"), ExtResource("12_y6deb"), ExtResource("13_og1vs"), ExtResource("14_2wyq8")])
-growth = 9.6
+leaf_cluster_prefabs = Array[PackedScene]([ExtResource("23_2wyq8")])
+growth = 0.376
 secs_to_full_grown = 20.0
 
-[node name="stump" parent="tree" groups=["tree_part"] instance=ExtResource("2_jkv2x")]
+[node name="stump" type="Node3D" parent="tree" groups=["tree_part"] instance=ExtResource("3_jbj1t")]
+transform = Transform3D(0.541302, 0, 0, 0, 0.688927, 0, 0, 0, 0.541302, 0, 0, 0)
 top_level = true
+script = ExtResource("24_2f3dj")
+stump = true
+matter = 2.9
 
-[node name="branch_0" type="Node3D" parent="tree/stump" groups=["connector"]]
-transform = Transform3D(1, 0, 0, 0, 0.994149, 0.108017, 0, -0.108017, 0.994149, -0.0260136, 2.13899, 0)
+[node name="connector_2" type="Node3D" parent="tree/stump" groups=["connector"]]
+transform = Transform3D(0.994998, -0.0994622, -0.00926535, 0.0998928, 0.990709, 0.092289, 2.33207e-10, -0.0927529, 0.995689, 1.49012e-08, 1.73418, 0)
 script = ExtResource("17_muem4")
 
-[node name="branch" parent="tree/stump/branch_0" groups=["tree_part"] instance=ExtResource("6_dp3eg")]
-transform = Transform3D(1, 0, 0, 0, 0.994149, 0.108017, 0, -0.108017, 0.994149, -0.0260136, 2.13899, 0)
+[node name="branch" type="Node3D" parent="tree/stump/connector_2" groups=["tree_part"] instance=ExtResource("11_pm3ni")]
+transform = Transform3D(0.675089, -0.0804829, -0.00630072, 0.0679301, 0.801329, 0.0431393, 0.00195405, -0.0518032, 0.677099, 8.06606e-09, 1.19472, 0)
 top_level = true
+script = ExtResource("24_2f3dj")
+matter = 2.5
 
-[node name="branch_2" type="Node3D" parent="tree/stump" groups=["connector"]]
-transform = Transform3D(0.966622, 0.253393, -0.0378563, -0.256205, 0.956012, -0.142826, -3.72529e-09, 0.147758, 0.989024, 0.176571, 2.12807, 0)
+[node name="connector_14" type="Node3D" parent="tree/stump/connector_2/branch" groups=["connector"]]
+transform = Transform3D(0.985762, 0.165961, -0.0270165, -0.168145, 0.972955, -0.158386, -1.86265e-09, 0.160674, 0.987008, -0.00566167, 2.96503, 0)
 script = ExtResource("17_muem4")
 
-[node name="branch" parent="tree/stump/branch_2" groups=["tree_part"] instance=ExtResource("5_muem4")]
-transform = Transform3D(0.966622, 0.253393, -0.0378563, -0.256205, 0.956012, -0.142826, -1.86265e-08, 0.147758, 0.989024, 0.176571, 2.12807, 0)
+[node name="branch" type="Node3D" parent="tree/stump/connector_2/branch/connector_14" groups=["tree_part"] instance=ExtResource("5_muem4")]
+transform = Transform3D(0.413846, 0.04903, -0.00716219, -0.0350252, 0.585398, -0.0357927, 0.004134, 0.0514918, 0.413739, -0.242456, 3.5703, -0.153609)
 top_level = true
+script = ExtResource("24_2f3dj")
+matter = 2.2
 
-[node name="branch_5" type="Node3D" parent="tree/stump/branch_2/branch" groups=["connector"]]
+[node name="connector_20" type="Node3D" parent="tree/stump/connector_2/branch/connector_14/branch" groups=["connector"]]
 transform = Transform3D(0.991794, -0.125465, -0.024542, 0.123661, 0.990208, -0.0647821, 0.0324295, 0.0612156, 0.997598, 0.0112266, 3.43053, -0.0382116)
 script = ExtResource("17_muem4")
 
-[node name="branch" parent="tree/stump/branch_2/branch/branch_5" groups=["tree_part"] instance=ExtResource("7_0ld40")]
-transform = Transform3D(0.988798, 0.127317, -0.0779035, -0.140513, 0.970052, -0.198128, 0.0503455, 0.206855, 0.977075, 1.05814, 5.41028, 0.469095)
+[node name="branch" type="Node3D" parent="tree/stump/connector_2/branch/connector_14/branch/connector_20" groups=["tree_part"] instance=ExtResource("6_dp3eg")]
+transform = Transform3D(0.0620403, -0.00627779, -0.00310247, 0.00388633, 0.0944742, -0.00453026, 0.00338782, 0.00658774, 0.0620116, -0.0693377, 5.5795, 0.00727174)
 top_level = true
+script = ExtResource("24_2f3dj")
+matter = 1.7
 
-[node name="branch_7" type="Node3D" parent="tree/stump/branch_2/branch/branch_5/branch" groups=["connector"]]
-transform = Transform3D(0.991794, -0.125465, -0.024542, 0.123661, 0.990208, -0.0647821, 0.0324295, 0.0612156, 0.997598, -0.0256607, 1.39714, -0.0103516)
+[node name="connector_31" type="Node3D" parent="tree/stump/connector_2/branch/connector_14/branch/connector_20/branch" groups=["connector"]]
+transform = Transform3D(0.991794, -0.118916, -0.0469328, 0.123661, 0.985493, 0.116238, 0.0324295, -0.121088, 0.992112, -0.0176945, 0.993458, 0.0150529)
 script = ExtResource("17_muem4")
 
-[node name="branch" parent="tree/stump/branch_2/branch/branch_5/branch/branch_7" groups=["tree_part"] instance=ExtResource("12_y6deb")]
-transform = Transform3D(0.993902, -0.00275813, -0.110231, -0.0258274, 0.966054, -0.257045, 0.107198, 0.258325, 0.960092, 1.21145, 6.77124, 0.746694)
+[node name="branch" type="Node3D" parent="tree/stump/connector_2/branch/connector_14/branch/connector_20/branch/connector_31" groups=["tree_part"] instance=ExtResource("8_gqmmt")]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, -0.0767189, 5.67322, 0.0146899)
 top_level = true
+script = ExtResource("24_2f3dj")
+matter = 1.5
 
-[node name="branch_8" type="Node3D" parent="tree/stump/branch_2/branch/branch_5/branch" groups=["connector"]]
-transform = Transform3D(0.991794, -0.0985859, -0.0813916, 0.123661, 0.901304, 0.415162, 0.0324295, -0.42182, 0.9061, 0.0522473, 0.792636, -0.0879184)
-script = ExtResource("17_muem4")
+[node name="leaf_connector_32" type="Node3D" parent="tree/stump/connector_2/branch/connector_14/branch/connector_20/branch/connector_31/branch" groups=["leaf_cluster_connector"]]
+transform = Transform3D(1, 0, 0, 0, 0.643135, -0.765753, 0, 0.765753, 0.643135, 2.72561e-08, 1.81487, -0.0911098)
+script = ExtResource("26_2f3dj")
 
-[node name="branch" parent="tree/stump/branch_2/branch/branch_5/branch/branch_8" groups=["tree_part"] instance=ExtResource("10_jscy8")]
-transform = Transform3D(0.993902, 0.0501311, -0.098211, -0.0258274, 0.971739, 0.234642, 0.107198, -0.230675, 0.967108, 1.21757, 6.18926, 0.549783)
-top_level = true
+[node name="leaf_connector_34" type="Node3D" parent="tree/stump/connector_2/branch/connector_14/branch/connector_20/branch/connector_31/branch" groups=["leaf_cluster_connector"]]
+transform = Transform3D(-0.915971, 0.307254, 0.258054, 0.0741605, 0.761693, -0.64368, -0.394332, -0.570455, -0.720475, -0.157901, 1.00561, 0.00813886)
+script = ExtResource("26_2f3dj")
 
-[node name="branch_9" type="Node3D" parent="tree/stump/branch_2/branch/branch_5/branch/branch_8/branch" groups=["connector"]]
-transform = Transform3D(0.912123, -0.00158859, 0.409914, -0.127979, 0.948904, 0.28845, -0.389427, -0.315562, 0.865313, -0.125279, 1.09208, -0.0962601)
-script = ExtResource("17_muem4")
+[node name="leaf_connector_33" type="Node3D" parent="tree/stump/connector_2/branch/connector_14/branch/connector_20/branch/connector_31/branch" groups=["leaf_cluster_connector"]]
+transform = Transform3D(-0.205257, -0.103656, -0.973204, -0.0240054, 0.99461, -0.100872, 0.978414, 0.00265753, -0.206639, -0.143978, 1.78469, -0.0729715)
+script = ExtResource("26_2f3dj")
 
-[node name="branch" parent="tree/stump/branch_2/branch/branch_5/branch/branch_8/branch/branch_9" groups=["tree_part"] instance=ExtResource("12_y6deb")]
-transform = Transform3D(0.938391, 0.0769825, 0.336892, -0.239296, 0.848083, 0.47275, -0.249319, -0.524241, 0.814255, 1.15725, 7.23112, 0.191344)
-top_level = true
+[node name="leaf_connector_21" type="Node3D" parent="tree/stump/connector_2/branch/connector_14/branch/connector_20/branch" groups=["leaf_cluster_connector"]]
+transform = Transform3D(1, 0, 0, 0, 0.643135, -0.765753, 0, 0.765753, 0.643135, 0, 0.677188, 0.0499388)
+script = ExtResource("26_2f3dj")
 
-[node name="branch_10" type="Node3D" parent="tree/stump/branch_2/branch/branch_5/branch/branch_8/branch/branch_9/branch" groups=["connector"]]
-transform = Transform3D(0.997612, 0.0645515, -0.024542, -0.0660227, 0.995713, -0.0647821, 0.0202549, 0.0662477, 0.997598, -0.0431688, 1.53226, 0.0354956)
-script = ExtResource("17_muem4")
+[node name="leaf_connector_23" type="Node3D" parent="tree/stump/connector_2/branch/connector_14/branch/connector_20/branch" groups=["leaf_cluster_connector"]]
+transform = Transform3D(-0.915971, 0.307254, 0.258054, 0.0741605, 0.761693, -0.64368, -0.394332, -0.570455, -0.720475, -0.0812735, 0.872338, -0.194919)
+script = ExtResource("26_2f3dj")
 
-[node name="branch" parent="tree/stump/branch_2/branch/branch_5/branch/branch_8/branch/branch_9/branch/branch_10" groups=["tree_part"] instance=ExtResource("8_gqmmt")]
-transform = Transform3D(0.937892, 0.159546, 0.308065, -0.285142, 0.860319, 0.422546, -0.197619, -0.484145, 0.852379, 1.24666, 8.55772, -0.572264)
-top_level = true
+[node name="leaf_connector_22" type="Node3D" parent="tree/stump/connector_2/branch/connector_14/branch/connector_20/branch" groups=["leaf_cluster_connector"]]
+transform = Transform3D(-0.205257, -0.103656, -0.973204, -0.0240054, 0.99461, -0.100872, 0.978414, 0.00265753, -0.206639, 0.0896554, 1.05404, -0.041886)
+script = ExtResource("26_2f3dj")
 
-[node name="branch_12" type="Node3D" parent="tree/stump/branch_2/branch/branch_5/branch/branch_8/branch/branch_9/branch" groups=["connector"]]
-transform = Transform3D(0.905208, -0.375815, -0.198394, 0.422053, 0.849595, 0.316321, 0.0496764, -0.370069, 0.927676, -0.02418, 0.867087, -0.0728135)
-script = ExtResource("17_muem4")
-
-[node name="branch" parent="tree/stump/branch_2/branch/branch_5/branch/branch_8/branch/branch_9/branch/branch_12" groups=["tree_part"] instance=ExtResource("6_dp3eg")]
-transform = Transform3D(0.898666, -0.41193, 0.150706, 0.164808, 0.635508, 0.7543, -0.406494, -0.653026, 0.638999, 1.17678, 7.93785, -0.316478)
-top_level = true
-
-[node name="branch_6" type="Node3D" parent="tree/stump/branch_2/branch" groups=["connector"]]
+[node name="connector_28" type="Node3D" parent="tree/stump/connector_2/branch/connector_14/branch" groups=["connector"]]
 transform = Transform3D(0.959979, 0.278995, -0.024542, -0.280019, 0.957807, -0.0647821, 0.0054326, 0.0690617, 0.997598, 0.0976302, 1.79542, 0.0464416)
 script = ExtResource("17_muem4")
 
-[node name="branch" parent="tree/stump/branch_2/branch/branch_6" groups=["tree_part"] instance=ExtResource("8_gqmmt")]
-transform = Transform3D(0.856777, 0.509769, -0.0779035, -0.514429, 0.834331, -0.198128, -0.036002, 0.209827, 0.977075, 0.724131, 3.81287, 0.311219)
+[node name="branch" type="Node3D" parent="tree/stump/connector_2/branch/connector_14/branch/connector_28" groups=["tree_part"] instance=ExtResource("7_0ld40")]
+transform = Transform3D(0.0585677, 0.0318263, -0.00310247, -0.0210588, 0.0890488, -0.00453026, 0.00139172, 0.00809776, 0.0620116, -0.114356, 4.61626, -0.0415415)
 top_level = true
+script = ExtResource("24_2f3dj")
+matter = 2.1
 
-[node name="branch_1" type="Node3D" parent="tree/stump" groups=["connector"]]
-transform = Transform3D(0.958457, -0.285105, 0.0086709, 0.285237, 0.958014, -0.0291361, 0, 0.030399, 0.999538, -0.241345, 1.94534, 0)
+[node name="connector_38" type="Node3D" parent="tree/stump/connector_2/branch/connector_14/branch/connector_28/branch" groups=["connector"]]
+transform = Transform3D(0.991794, -0.125465, -0.024542, 0.123661, 0.990208, -0.0647821, 0.0324295, 0.0612156, 0.997598, -0.0256607, 1.39714, -0.0103516)
 script = ExtResource("17_muem4")
 
-[node name="branch" parent="tree/stump/branch_1" groups=["tree_part"] instance=ExtResource("10_jscy8")]
-transform = Transform3D(0.958457, -0.285105, 0.0086709, 0.285237, 0.958014, -0.0291361, 1.30385e-08, 0.030399, 0.999538, -0.241345, 1.94534, 0)
+[node name="branch" type="Node3D" parent="tree/stump/connector_2/branch/connector_14/branch/connector_28/branch/connector_38" groups=["tree_part"] instance=ExtResource("12_y6deb")]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, -0.0713608, 4.74126, -0.0309054)
 top_level = true
+script = ExtResource("24_2f3dj")
+matter = 1.9
 
-[node name="branch_13" type="Node3D" parent="tree/stump/branch_1/branch" groups=["connector"]]
-transform = Transform3D(0.978643, 0.0777261, 0.190308, -0.0633931, 0.994754, -0.0802884, -0.19555, 0.0665096, 0.978436, -0.0322904, 2.03461, 0.063557)
+[node name="leaf_connector_39" type="Node3D" parent="tree/stump/connector_2/branch/connector_14/branch/connector_28/branch/connector_38/branch" groups=["leaf_cluster_connector"]]
+transform = Transform3D(-0.915971, 0.307254, 0.258054, 0.0741605, 0.761693, -0.64368, -0.394332, -0.570455, -0.720475, -0.0178155, 1.49812, -0.224632)
+script = ExtResource("26_2f3dj")
+
+[node name="leaf_connector_40" type="Node3D" parent="tree/stump/connector_2/branch/connector_14/branch/connector_28/branch/connector_38/branch" groups=["leaf_cluster_connector"]]
+transform = Transform3D(-0.205257, -0.103656, -0.973204, -0.0240054, 0.99461, -0.100872, 0.978414, 0.00265753, -0.206639, 0.00264037, 1.43799, 0.202879)
+script = ExtResource("26_2f3dj")
+
+[node name="leaf_connector_29" type="Node3D" parent="tree/stump/connector_2/branch/connector_14/branch/connector_28/branch" groups=["leaf_cluster_connector"]]
+transform = Transform3D(1, 0, 0, 0, 0.643135, -0.765753, 0, 0.765753, 0.643135, 0, 1.47139, -0.0388771)
+script = ExtResource("26_2f3dj")
+
+[node name="leaf_connector_30" type="Node3D" parent="tree/stump/connector_2/branch/connector_14/branch/connector_28/branch" groups=["leaf_cluster_connector"]]
+transform = Transform3D(-0.797442, -0.103656, -0.594425, -0.0847034, 0.99461, -0.0598066, 0.59742, 0.00265752, -0.801924, -0.115252, 0.726199, -0.0929159)
+script = ExtResource("26_2f3dj")
+
+[node name="leaf_connector_16" type="Node3D" parent="tree/stump/connector_2/branch/connector_14/branch" groups=["leaf_cluster_connector"]]
+transform = Transform3D(1, 0, 0, 0, 0.643135, -0.765753, 0, 0.765753, 0.643135, 0, 3.44076, -0.0741475)
+script = ExtResource("26_2f3dj")
+
+[node name="leaf_connector_15" type="Node3D" parent="tree/stump/connector_2/branch/connector_14/branch" groups=["leaf_cluster_connector"]]
+transform = Transform3D(-0.915971, 0.307254, 0.258054, 0.0741605, 0.761693, -0.64368, -0.394332, -0.570455, -0.720475, 0, 3.52581, 0.115324)
+script = ExtResource("26_2f3dj")
+
+[node name="leaf_connector_17" type="Node3D" parent="tree/stump/connector_2/branch/connector_14/branch" groups=["leaf_cluster_connector"]]
+transform = Transform3D(-0.205257, -0.103656, -0.973204, -0.0240054, 0.99461, -0.100872, 0.978414, 0.00265753, -0.206639, 0.138204, 2.06471, -0.0069038)
+script = ExtResource("26_2f3dj")
+
+[node name="connector_4" type="Node3D" parent="tree/stump/connector_2/branch" groups=["connector"]]
+transform = Transform3D(0.876822, -0.435524, -0.203719, 0.470409, 0.864711, 0.176041, 0.0994874, -0.250188, 0.963073, -0.0549002, 1.84033, -0.0424069)
 script = ExtResource("17_muem4")
 
-[node name="branch" parent="tree/stump/branch_1/branch/branch_13" groups=["tree_part"] instance=ExtResource("12_y6deb")]
-transform = Transform3D(0.954365, -0.208535, 0.213777, 0.224111, 0.973221, -0.0511423, -0.197387, 0.0967182, 0.975543, -0.851821, 3.88346, 0.125378)
+[node name="branch" type="Node3D" parent="tree/stump/connector_2/branch/connector_4" groups=["tree_part"] instance=ExtResource("5_muem4")]
+transform = Transform3D(0.343604, -0.300912, -0.0976132, 0.229163, 0.481643, 0.0700997, 0.0439561, -0.158801, 0.39758, -0.18491, 2.66387, -0.124156)
 top_level = true
+script = ExtResource("24_2f3dj")
+matter = 2.2
 
-[node name="branch_3" type="Node3D" parent="tree/stump/branch_1/branch" groups=["connector"]]
-transform = Transform3D(0.912123, -0.00158859, 0.409914, -0.127979, 0.948904, 0.28845, -0.389427, -0.315562, 0.865313, -0.125279, 1.09208, -0.0962601)
+[node name="connector_18" type="Node3D" parent="tree/stump/connector_2/branch/connector_4/branch" groups=["connector"]]
+transform = Transform3D(0.991794, -0.125465, -0.024542, 0.123661, 0.990208, -0.0647821, 0.0324295, 0.0612156, 0.997598, 0.0112266, 3.43053, -0.0382116)
 script = ExtResource("17_muem4")
 
-[node name="branch" parent="tree/stump/branch_1/branch/branch_3" groups=["tree_part"] instance=ExtResource("12_y6deb")]
-transform = Transform3D(0.907341, -0.274796, 0.31815, 0.148912, 0.917804, 0.36805, -0.393138, -0.286571, 0.873682, -0.673612, 2.95864, -0.0630175)
+[node name="branch" type="Node3D" parent="tree/stump/connector_2/branch/connector_4/branch/connector_18" groups=["tree_part"] instance=ExtResource("12_y6deb")]
+transform = Transform3D(0.0515423, -0.0494355, -0.0129442, 0.033502, 0.0799344, 0.00206094, 0.00982814, -0.0132215, 0.0608587, -1.20961, 4.31606, -0.683626)
 top_level = true
+script = ExtResource("24_2f3dj")
+matter = 1.9
 
-[node name="branch_4" type="Node3D" parent="tree/stump/branch_1/branch/branch_3/branch" groups=["connector"]]
+[node name="connector_24" type="Node3D" parent="tree/stump/connector_2/branch/connector_4/branch/connector_18/branch" groups=["connector"]]
 transform = Transform3D(0.997612, 0.0645515, -0.024542, -0.0660227, 0.995713, -0.0647821, 0.0202549, 0.0662477, 0.997598, -0.0431688, 1.53226, 0.0354956)
 script = ExtResource("17_muem4")
 
-[node name="branch" parent="tree/stump/branch_1/branch/branch_3/branch/branch_4" groups=["tree_part"] instance=ExtResource("6_dp3eg")]
-transform = Transform3D(0.929762, -0.19397, 0.312919, 0.0954152, 0.947864, 0.304054, -0.355582, -0.252841, 0.899796, -1.12255, 4.37159, -0.454135)
+[node name="branch" type="Node3D" parent="tree/stump/connector_2/branch/connector_4/branch/connector_18/branch/connector_24" groups=["tree_part"] instance=ExtResource("6_dp3eg")]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, -1.28804, 4.43717, -0.702149)
 top_level = true
+script = ExtResource("24_2f3dj")
+matter = 1.7
 
-[node name="branch_11" type="Node3D" parent="tree/stump/branch_1/branch/branch_3/branch" groups=["connector"]]
+[node name="leaf_connector_25" type="Node3D" parent="tree/stump/connector_2/branch/connector_4/branch/connector_18/branch/connector_24/branch" groups=["leaf_cluster_connector"]]
+transform = Transform3D(1, 0, 0, 0, 0.643135, -0.765753, 0, 0.765753, 0.643135, 0, 0.677188, 0.0499388)
+script = ExtResource("26_2f3dj")
+
+[node name="connector_26" type="Node3D" parent="tree/stump/connector_2/branch/connector_4/branch/connector_18/branch" groups=["connector"]]
 transform = Transform3D(0.905208, -0.375815, -0.198394, 0.422053, 0.849595, 0.316321, 0.0496764, -0.370069, 0.927676, -0.02418, 0.867087, -0.0728135)
 script = ExtResource("17_muem4")
 
-[node name="branch" parent="tree/stump/branch_1/branch/branch_3/branch/branch_11" groups=["tree_part"] instance=ExtResource("8_gqmmt")]
-transform = Transform3D(0.72116, -0.692195, 0.0282049, 0.540442, 0.587595, 0.602209, -0.433419, -0.419045, 0.79784, -0.956989, 3.72405, -0.365609)
+[node name="branch" type="Node3D" parent="tree/stump/connector_2/branch/connector_4/branch/connector_18/branch/connector_26" groups=["tree_part"] instance=ExtResource("6_dp3eg")]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, -1.25278, 4.38441, -0.69976)
 top_level = true
+script = ExtResource("24_2f3dj")
+matter = 1.7
+
+[node name="leaf_connector_27" type="Node3D" parent="tree/stump/connector_2/branch/connector_4/branch/connector_18/branch/connector_26/branch" groups=["leaf_cluster_connector"]]
+transform = Transform3D(-0.915971, 0.307254, 0.258054, 0.0741605, 0.761693, -0.64368, -0.394332, -0.570455, -0.720475, -0.0812735, 0.872338, -0.194919)
+script = ExtResource("26_2f3dj")
+
+[node name="leaf_connector_19" type="Node3D" parent="tree/stump/connector_2/branch/connector_4/branch/connector_18/branch" groups=["leaf_cluster_connector"]]
+transform = Transform3D(-0.915971, 0.307254, 0.258054, 0.0741605, 0.761693, -0.64368, -0.394332, -0.570455, -0.720475, -0.0178155, 1.49812, -0.224632)
+script = ExtResource("26_2f3dj")
+
+[node name="connector_7" type="Node3D" parent="tree/stump/connector_2/branch/connector_4/branch" groups=["connector"]]
+transform = Transform3D(0.959979, 0.278995, -0.024542, -0.280019, 0.957807, -0.0647821, 0.0054326, 0.0690617, 0.997598, 0.0976302, 1.79542, 0.0464416)
+script = ExtResource("17_muem4")
+
+[node name="branch" type="Node3D" parent="tree/stump/connector_2/branch/connector_4/branch/connector_7" groups=["tree_part"] instance=ExtResource("7_0ld40")]
+transform = Transform3D(0.0601834, -0.0141376, -0.0129442, 0.00990789, 0.093649, 0.00206094, 0.012465, -0.00617834, 0.0608587, -0.696162, 3.55426, -0.386515)
+top_level = true
+script = ExtResource("24_2f3dj")
+matter = 2.1
+
+[node name="connector_35" type="Node3D" parent="tree/stump/connector_2/branch/connector_4/branch/connector_7/branch" groups=["connector"]]
+transform = Transform3D(0.991794, -0.125465, -0.024542, 0.123661, 0.990208, -0.0647821, 0.0324295, 0.0612156, 0.997598, -0.0256607, 1.39714, -0.0103516)
+script = ExtResource("17_muem4")
+
+[node name="branch" type="Node3D" parent="tree/stump/connector_2/branch/connector_4/branch/connector_7/branch/connector_35" groups=["tree_part"] instance=ExtResource("6_dp3eg")]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, -0.717324, 3.68482, -0.396097)
+top_level = true
+script = ExtResource("24_2f3dj")
+matter = 1.7
+
+[node name="leaf_connector_37" type="Node3D" parent="tree/stump/connector_2/branch/connector_4/branch/connector_7/branch/connector_35/branch" groups=["leaf_cluster_connector"]]
+transform = Transform3D(-0.915971, 0.307254, 0.258054, 0.0741605, 0.761693, -0.64368, -0.394332, -0.570455, -0.720475, -0.0812735, 0.872338, -0.194919)
+script = ExtResource("26_2f3dj")
+
+[node name="leaf_connector_36" type="Node3D" parent="tree/stump/connector_2/branch/connector_4/branch/connector_7/branch/connector_35/branch" groups=["leaf_cluster_connector"]]
+transform = Transform3D(-0.205257, -0.103656, -0.973204, -0.0240054, 0.99461, -0.100872, 0.978414, 0.00265753, -0.206639, 0.0896554, 1.05404, -0.041886)
+script = ExtResource("26_2f3dj")
+
+[node name="connector_11" type="Node3D" parent="tree/stump/connector_2/branch/connector_4/branch/connector_7/branch" groups=["connector"]]
+transform = Transform3D(0.991794, -0.0985859, -0.0813916, 0.123661, 0.901304, 0.415162, 0.0324295, -0.42182, 0.9061, 0.0522473, 0.792636, -0.0879184)
+script = ExtResource("17_muem4")
+
+[node name="branch" type="Node3D" parent="tree/stump/connector_2/branch/connector_4/branch/connector_7/branch/connector_11" groups=["tree_part"] instance=ExtResource("6_dp3eg")]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, -0.703085, 3.62882, -0.396111)
+top_level = true
+script = ExtResource("24_2f3dj")
+matter = 1.7
+
+[node name="leaf_connector_12" type="Node3D" parent="tree/stump/connector_2/branch/connector_4/branch/connector_7/branch/connector_11/branch" groups=["leaf_cluster_connector"]]
+transform = Transform3D(1, 0, 0, 0, 0.643135, -0.765753, 0, 0.765753, 0.643135, 0, 0.677188, 0.0499388)
+script = ExtResource("26_2f3dj")
+
+[node name="leaf_connector_13" type="Node3D" parent="tree/stump/connector_2/branch/connector_4/branch/connector_7/branch/connector_11/branch" groups=["leaf_cluster_connector"]]
+transform = Transform3D(-0.915971, 0.307254, 0.258054, 0.0741605, 0.761693, -0.64368, -0.394332, -0.570455, -0.720475, -0.0812735, 0.872338, -0.194919)
+script = ExtResource("26_2f3dj")
+
+[node name="leaf_connector_9" type="Node3D" parent="tree/stump/connector_2/branch/connector_4/branch/connector_7/branch" groups=["leaf_cluster_connector"]]
+transform = Transform3D(1, 0, 0, 0, 0.643135, -0.765753, 0, 0.765753, 0.643135, 0, 1.47139, -0.0388771)
+script = ExtResource("26_2f3dj")
+
+[node name="leaf_connector_8" type="Node3D" parent="tree/stump/connector_2/branch/connector_4/branch/connector_7/branch" groups=["leaf_cluster_connector"]]
+transform = Transform3D(-0.915971, 0.307254, 0.258054, 0.0741605, 0.761693, -0.64368, -0.394332, -0.570455, -0.720475, -0.0507391, 1.45424, -0.156409)
+script = ExtResource("26_2f3dj")
+
+[node name="leaf_connector_10" type="Node3D" parent="tree/stump/connector_2/branch/connector_4/branch/connector_7/branch" groups=["leaf_cluster_connector"]]
+transform = Transform3D(-0.797442, -0.103656, -0.594425, -0.0847034, 0.99461, -0.0598066, 0.59742, 0.00265752, -0.801924, -0.115252, 0.726199, -0.0929159)
+script = ExtResource("26_2f3dj")
+
+[node name="leaf_connector_6" type="Node3D" parent="tree/stump/connector_2/branch/connector_4/branch" groups=["leaf_cluster_connector"]]
+transform = Transform3D(1, 0, 0, 0, 0.643135, -0.765753, 0, 0.765753, 0.643135, 0, 3.44076, -0.0741475)
+script = ExtResource("26_2f3dj")
+
+[node name="leaf_connector_5" type="Node3D" parent="tree/stump/connector_2/branch/connector_4/branch" groups=["leaf_cluster_connector"]]
+transform = Transform3D(-0.205257, -0.103656, -0.973204, -0.0240054, 0.99461, -0.100872, 0.978414, 0.00265753, -0.206639, 0.138204, 2.06471, -0.0069038)
+script = ExtResource("26_2f3dj")
+
+[node name="leaf_connector_3" type="Node3D" parent="tree/stump/connector_2/branch" groups=["leaf_cluster_connector"]]
+transform = Transform3D(1, 0, 0, 0, 0.643135, -0.765753, 0, 0.765753, 0.643135, 0, 2.93684, 0.107398)
+script = ExtResource("26_2f3dj")
+
+[node name="connector_0" type="Node3D" parent="tree/stump" groups=["connector"]]
+transform = Transform3D(0.972586, 0.19177, -0.131529, -0.192798, 0.981226, 0.00499859, 0.130018, 0.0204968, 0.9913, 0.156651, 1.76011, 0.108973)
+script = ExtResource("17_muem4")
+
+[node name="branch" type="Node3D" parent="tree/stump/connector_0" groups=["tree_part"] instance=ExtResource("8_gqmmt")]
+transform = Transform3D(0.659928, 0.154602, -0.0892431, -0.130814, 0.791879, 0.00233652, 0.0880158, 0.0177622, 0.672602, 0.0847956, 1.21259, 0.0589873)
+top_level = true
+script = ExtResource("24_2f3dj")
+matter = 1.5
+
+[node name="leaf_connector_1" type="Node3D" parent="tree/stump/connector_0/branch" groups=["leaf_cluster_connector"]]
+transform = Transform3D(-0.915971, 0.307254, 0.258054, 0.0741605, 0.761693, -0.64368, -0.394332, -0.570455, -0.720475, -0.157901, 1.00561, 0.00813886)
+script = ExtResource("26_2f3dj")
 
 [node name="ui" type="Control" parent="."]
 layout_mode = 3

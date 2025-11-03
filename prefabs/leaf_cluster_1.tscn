@@ -1,14 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://dvknk446o5hw3"]
+[gd_scene load_steps=4 format=3 uid="uid://dvknk446o5hw3"]
 
+[ext_resource type="Script" uid="uid://bsqn3epceykpi" path="res://scripts/leaf_cluster.gd" id="1_i7t7u"]
 [ext_resource type="PackedScene" uid="uid://bqgcce61aw267" path="res://prefabs/leaf_1.tscn" id="1_w6ul4"]
+[ext_resource type="Script" uid="uid://cfvtp8h4cp1u6" path="res://scripts/leaf.gd" id="3_3caup"]
 
-[node name="leaf_cluster_1" type="Node3D"]
+[node name="leaf_cluster_1" type="Node3D" groups=["leaf_cluster"]]
+top_level = true
+script = ExtResource("1_i7t7u")
 
-[node name="leaf_1" parent="." instance=ExtResource("1_w6ul4")]
+[node name="scaler" type="Node3D" parent="."]
+
+[node name="leaf_1" parent="scaler" groups=["leaf"] instance=ExtResource("1_w6ul4")]
 transform = Transform3D(1, 0, 0, 0, 0.856105, 0.516802, 0, -0.516802, 0.856105, 0, 0.0622751, -0.238766)
+script = ExtResource("3_3caup")
 
-[node name="leaf_2" parent="." instance=ExtResource("1_w6ul4")]
+[node name="leaf_2" parent="scaler" groups=["leaf"] instance=ExtResource("1_w6ul4")]
 transform = Transform3D(1.22117, -0.48017, 0, 0.411076, 1.04545, 0.678139, -0.248153, -0.631104, 1.12337, -0.243948, -0.119022, -0.10629)
+script = ExtResource("3_3caup")
 
-[node name="leaf_3" parent="." instance=ExtResource("1_w6ul4")]
+[node name="leaf_3" parent="scaler" groups=["leaf"] instance=ExtResource("1_w6ul4")]
 transform = Transform3D(1.09522, 0.390257, 0.0921449, -0.343287, 0.774019, 0.802085, 0.207231, -0.780311, 0.841701, 0.187455, -0.143537, -0.103447)
+script = ExtResource("3_3caup")

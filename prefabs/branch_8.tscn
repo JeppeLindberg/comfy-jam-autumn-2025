@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7i71oh263k7d"]
+[gd_scene load_steps=5 format=3 uid="uid://b7i71oh263k7d"]
 
 [ext_resource type="Script" uid="uid://ceo5p8u1oc2jh" path="res://scripts/tree_part.gd" id="1_8amwk"]
 [ext_resource type="Script" uid="uid://4jkiu32j3a8p" path="res://scripts/connector.gd" id="2_8jk6h"]
+[ext_resource type="Script" uid="uid://b1wsaknt8lgf3" path="res://scripts/leaf_cluster_connector.gd" id="3_dx6wu"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_eb6dy"]
 top_radius = 0.1
@@ -24,3 +25,15 @@ script = ExtResource("2_8jk6h")
 [node name="connector2" type="Node3D" parent="."]
 transform = Transform3D(0.905208, -0.375815, -0.198394, 0.422053, 0.849595, 0.316321, 0.0496764, -0.370069, 0.927676, -0.02418, 0.867087, -0.0728135)
 script = ExtResource("2_8jk6h")
+
+[node name="leaf_cluster_connector" type="Node3D" parent="." groups=["leaf_cluster_connector"]]
+transform = Transform3D(1, 0, 0, 0, 0.643135, -0.765753, 0, 0.765753, 0.643135, -2.38419e-07, 1.55302, 0.0247653)
+script = ExtResource("3_dx6wu")
+
+[node name="leaf_cluster_connector2" type="Node3D" parent="." groups=["leaf_cluster_connector"]]
+transform = Transform3D(-0.915971, 0.307254, 0.258054, 0.0741605, 0.761693, -0.64368, -0.394332, -0.570455, -0.720475, -0.0178155, 1.49812, -0.224632)
+script = ExtResource("3_dx6wu")
+
+[node name="leaf_cluster_connector3" type="Node3D" parent="." groups=["leaf_cluster_connector"]]
+transform = Transform3D(-0.205257, -0.103656, -0.973204, -0.0240054, 0.99461, -0.100872, 0.978414, 0.00265753, -0.206639, 0.00264037, 1.43799, 0.202879)
+script = ExtResource("3_dx6wu")
