@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bb7m2rw06emdx"]
+[gd_scene load_steps=42 format=3 uid="uid://bb7m2rw06emdx"]
 
 [ext_resource type="Script" uid="uid://ck78o8i26mlcw" path="res://scripts/tree.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://ewvq7sqp0mes" path="res://scripts/main.gd" id="1_muem4"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" uid="uid://4jkiu32j3a8p" path="res://scripts/connector.gd" id="17_muem4"]
 [ext_resource type="PackedScene" uid="uid://couusae3a5or8" path="res://prefabs/ui_card_1.tscn" id="20_gqmmt"]
 [ext_resource type="Script" uid="uid://dw6h3p0rj8iau" path="res://scripts/ui_stats_text.gd" id="23_pm3ni"]
+[ext_resource type="PackedScene" uid="uid://dvknk446o5hw3" path="res://prefabs/leaf_cluster_1.tscn" id="24_2wyq8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jbj1t"]
 sky_top_color = Color(0.581293, 0.913401, 0.941485, 1)
@@ -40,59 +41,6 @@ sky_material = SubResource("ProceduralSkyMaterial_jbj1t")
 background_mode = 2
 sky = SubResource("Sky_muem4")
 tonemap_mode = 2
-
-[sub_resource type="Animation" id="Animation_2f3dj"]
-resource_name = "normal"
-length = 24.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:environment:sky:sky_material:sky_top_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.77476, 5.5093, 11.8333, 16.7333, 20.4333, 22.3667),
-"transitions": PackedFloat32Array(-2, -2, 1, -2, -2, -2, -2),
-"update": 0,
-"values": [Color(0, 0, 0, 1), Color(0.0139082, 0.0599201, 0.1339, 1), Color(0.407221, 0.775416, 0.811108, 1), Color(0.581293, 0.913401, 0.941485, 1), Color(0.407221, 0.775416, 0.811108, 1), Color(0.305481, 0.00504881, 0.0890932, 1), Color(0.0941073, 0.00155532, 0.0274463, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:environment:sky:sky_material:sky_horizon_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2.77476, 5.54951, 11.7827, 16.7667, 20.4333, 22.1333),
-"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2),
-"update": 0,
-"values": [Color(0.0389749, 0.121329, 0.234701, 1), Color(0.113725, 0.258824, 0.458824, 1), Color(0.403922, 0.760784, 0.8, 1), Color(0.738593, 0.891657, 0.892836, 1), Color(0.403922, 0.760784, 0.8, 1), Color(0.817791, 0.098649, 0.363372, 1), Color(0.278899, 0.114342, 0.27434, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:environment:sky:sky_material:ground_bottom_color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 2.77476, 11.7827, 16.8667, 20.5, 23.1333),
-"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2),
-"update": 0,
-"values": [Color(0.498434, 0.612416, 0.559689, 1), Color(0.611311, 0.842303, 0.758661, 1), Color(0.951609, 0.932474, 0.895961, 1), Color(0.611311, 0.842303, 0.758661, 1), Color(0.852735, 0.559755, 0.607766, 1), Color(0.611779, 0.595569, 0.575069, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:environment:sky:sky_material:ground_horizon_color")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 2.77476, 5.54951, 11.7827, 16.7667, 20.4333, 22.1333),
-"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2),
-"update": 0,
-"values": [Color(0.0392157, 0.121569, 0.235294, 1), Color(0.113725, 0.258824, 0.458824, 1), Color(0.403369, 0.761889, 0.801823, 1), Color(0.737255, 0.890196, 0.894118, 1), Color(0.403922, 0.760784, 0.8, 1), Color(0.819608, 0.0980392, 0.364706, 1), Color(0.279625, 0.11432, 0.275161, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_yq6so"]
 length = 0.001
@@ -143,6 +91,59 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0.737255, 0.890196, 0.894118, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2f3dj"]
+resource_name = "normal"
+length = 24.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:environment:sky:sky_material:sky_top_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.77476, 5.5093, 11.8333, 16.7333, 20.4333, 22.3667),
+"transitions": PackedFloat32Array(-2, -2, 1, -2, -2, -2, -2),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0.0139082, 0.0599201, 0.1339, 1), Color(0.407221, 0.775416, 0.811108, 1), Color(0.581293, 0.913401, 0.941485, 1), Color(0.407221, 0.775416, 0.811108, 1), Color(0.175384, 0.00173365, 0.0371237, 1), Color(0.0941073, 0.00155532, 0.0274463, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:environment:sky:sky_material:sky_horizon_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.77476, 5.54951, 11.7827, 16.7667, 20.4333, 22.1333),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2),
+"update": 0,
+"values": [Color(0.0389749, 0.121329, 0.234701, 1), Color(0.113725, 0.258824, 0.458824, 1), Color(0.403922, 0.760784, 0.8, 1), Color(0.738593, 0.891657, 0.892836, 1), Color(0.403922, 0.760784, 0.8, 1), Color(0.83098, 0.055085, 0.326412, 1), Color(0.278899, 0.114342, 0.27434, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:environment:sky:sky_material:ground_bottom_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.77476, 11.7827, 16.8667, 20.5, 23.1333),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2),
+"update": 0,
+"values": [Color(0.498434, 0.612416, 0.559689, 1), Color(0.611311, 0.842303, 0.758661, 1), Color(0.951609, 0.932474, 0.895961, 1), Color(0.611311, 0.842303, 0.758661, 1), Color(0.852735, 0.559755, 0.607766, 1), Color(0.611779, 0.595569, 0.575069, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:environment:sky:sky_material:ground_horizon_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.77476, 5.54951, 11.7827, 16.7667, 20.4333, 22.1333),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2),
+"update": 0,
+"values": [Color(0.0392157, 0.121569, 0.235294, 1), Color(0.113725, 0.258824, 0.458824, 1), Color(0.403369, 0.761889, 0.801823, 1), Color(0.737255, 0.890196, 0.894118, 1), Color(0.403922, 0.760784, 0.8, 1), Color(0.831373, 0.054902, 0.32549, 1), Color(0.279625, 0.11432, 0.275161, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yq6so"]
@@ -281,7 +282,6 @@ script = ExtResource("3_og1vs")
 transform = Transform3D(-0.729721, 0.683745, 6.37942e-08, 0.683745, 0.729721, -5.97749e-08, -8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="directional_light" type="Node3D" parent="pivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("2_y6deb")
 
 [node name="sun" type="DirectionalLight3D" parent="pivot/directional_light"]
@@ -322,6 +322,9 @@ sun_amount_day_curve = SubResource("Curve_y6deb")
 script = ExtResource("3_gqmmt")
 stats_text = NodePath("../ui/panel/container/stats/margin/container/stats_text")
 
+[node name="leaf_cluster_1" parent="." instance=ExtResource("24_2wyq8")]
+transform = Transform3D(0.548045, 0.235898, -0.802495, 0, 0.959408, 0.282023, 0.836449, -0.154561, 0.525799, 0.117324, 2.34013, -0.371446)
+
 [node name="cards" type="Node3D" parent="." node_paths=PackedStringArray("cards_container")]
 script = ExtResource("4_yc10j")
 cards_container = NodePath("../ui/panel/container/card_panel/margin/card_panel/container")
@@ -352,7 +355,7 @@ transform = Transform3D(0.966622, 0.253393, -0.0378563, -0.256205, 0.956012, -0.
 script = ExtResource("17_muem4")
 
 [node name="branch" parent="tree/stump/branch_2" groups=["tree_part"] instance=ExtResource("5_muem4")]
-transform = Transform3D(0.966622, 0.253393, -0.0378563, -0.256205, 0.956012, -0.142826, -1.49012e-08, 0.147758, 0.989024, 0.176571, 2.12807, 0)
+transform = Transform3D(0.966622, 0.253393, -0.0378563, -0.256205, 0.956012, -0.142826, -1.86265e-08, 0.147758, 0.989024, 0.176571, 2.12807, 0)
 top_level = true
 
 [node name="branch_5" type="Node3D" parent="tree/stump/branch_2/branch" groups=["connector"]]
@@ -368,7 +371,7 @@ transform = Transform3D(0.991794, -0.125465, -0.024542, 0.123661, 0.990208, -0.0
 script = ExtResource("17_muem4")
 
 [node name="branch" parent="tree/stump/branch_2/branch/branch_5/branch/branch_7" groups=["tree_part"] instance=ExtResource("12_y6deb")]
-transform = Transform3D(0.993902, -0.00275812, -0.110231, -0.0258274, 0.966054, -0.257045, 0.107198, 0.258325, 0.960092, 1.21145, 6.77124, 0.746694)
+transform = Transform3D(0.993902, -0.00275813, -0.110231, -0.0258274, 0.966054, -0.257045, 0.107198, 0.258325, 0.960092, 1.21145, 6.77124, 0.746694)
 top_level = true
 
 [node name="branch_8" type="Node3D" parent="tree/stump/branch_2/branch/branch_5/branch" groups=["connector"]]
@@ -384,7 +387,7 @@ transform = Transform3D(0.912123, -0.00158859, 0.409914, -0.127979, 0.948904, 0.
 script = ExtResource("17_muem4")
 
 [node name="branch" parent="tree/stump/branch_2/branch/branch_5/branch/branch_8/branch/branch_9" groups=["tree_part"] instance=ExtResource("12_y6deb")]
-transform = Transform3D(0.938391, 0.0769826, 0.336892, -0.239296, 0.848083, 0.47275, -0.249319, -0.524241, 0.814255, 1.15725, 7.23112, 0.191344)
+transform = Transform3D(0.938391, 0.0769825, 0.336892, -0.239296, 0.848083, 0.47275, -0.249319, -0.524241, 0.814255, 1.15725, 7.23112, 0.191344)
 top_level = true
 
 [node name="branch_10" type="Node3D" parent="tree/stump/branch_2/branch/branch_5/branch/branch_8/branch/branch_9/branch" groups=["connector"]]
@@ -448,7 +451,7 @@ transform = Transform3D(0.905208, -0.375815, -0.198394, 0.422053, 0.849595, 0.31
 script = ExtResource("17_muem4")
 
 [node name="branch" parent="tree/stump/branch_1/branch/branch_3/branch/branch_11" groups=["tree_part"] instance=ExtResource("8_gqmmt")]
-transform = Transform3D(0.72116, -0.692195, 0.0282048, 0.540442, 0.587595, 0.602209, -0.433419, -0.419045, 0.79784, -0.956989, 3.72405, -0.365609)
+transform = Transform3D(0.72116, -0.692195, 0.0282049, 0.540442, 0.587595, 0.602209, -0.433419, -0.419045, 0.79784, -0.956989, 3.72405, -0.365609)
 top_level = true
 
 [node name="ui" type="Control" parent="."]
