@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bb7m2rw06emdx"]
+[gd_scene load_steps=41 format=3 uid="uid://bb7m2rw06emdx"]
 
 [ext_resource type="Script" uid="uid://ck78o8i26mlcw" path="res://scripts/tree.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://ewvq7sqp0mes" path="res://scripts/main.gd" id="1_muem4"]
@@ -27,8 +27,11 @@
 [ext_resource type="Script" uid="uid://dw6h3p0rj8iau" path="res://scripts/ui_stats_text.gd" id="23_pm3ni"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jbj1t"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+sky_top_color = Color(0.581293, 0.913401, 0.941485, 1)
+sky_horizon_color = Color(0.738593, 0.891657, 0.892836, 1)
+ground_bottom_color = Color(0.951609, 0.932474, 0.895961, 1)
+ground_horizon_color = Color(0.737255, 0.890196, 0.894118, 1)
+ground_curve = 0.0887659
 
 [sub_resource type="Sky" id="Sky_muem4"]
 sky_material = SubResource("ProceduralSkyMaterial_jbj1t")
@@ -37,6 +40,116 @@ sky_material = SubResource("ProceduralSkyMaterial_jbj1t")
 background_mode = 2
 sky = SubResource("Sky_muem4")
 tonemap_mode = 2
+
+[sub_resource type="Animation" id="Animation_2f3dj"]
+resource_name = "normal"
+length = 24.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:environment:sky:sky_material:sky_top_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.77476, 5.5093, 11.8333, 16.7333, 20.4333, 22.3667),
+"transitions": PackedFloat32Array(-2, -2, 1, -2, -2, -2, -2),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0.0139082, 0.0599201, 0.1339, 1), Color(0.407221, 0.775416, 0.811108, 1), Color(0.581293, 0.913401, 0.941485, 1), Color(0.407221, 0.775416, 0.811108, 1), Color(0.305481, 0.00504881, 0.0890932, 1), Color(0.0941073, 0.00155532, 0.0274463, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:environment:sky:sky_material:sky_horizon_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.77476, 5.54951, 11.7827, 16.7667, 20.4333, 22.1333),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2),
+"update": 0,
+"values": [Color(0.0389749, 0.121329, 0.234701, 1), Color(0.113725, 0.258824, 0.458824, 1), Color(0.403922, 0.760784, 0.8, 1), Color(0.738593, 0.891657, 0.892836, 1), Color(0.403922, 0.760784, 0.8, 1), Color(0.817791, 0.098649, 0.363372, 1), Color(0.278899, 0.114342, 0.27434, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:environment:sky:sky_material:ground_bottom_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.77476, 11.7827, 16.8667, 20.5, 23.1333),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2),
+"update": 0,
+"values": [Color(0.498434, 0.612416, 0.559689, 1), Color(0.611311, 0.842303, 0.758661, 1), Color(0.951609, 0.932474, 0.895961, 1), Color(0.611311, 0.842303, 0.758661, 1), Color(0.852735, 0.559755, 0.607766, 1), Color(0.611779, 0.595569, 0.575069, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:environment:sky:sky_material:ground_horizon_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.77476, 5.54951, 11.7827, 16.7667, 20.4333, 22.1333),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2),
+"update": 0,
+"values": [Color(0.0392157, 0.121569, 0.235294, 1), Color(0.113725, 0.258824, 0.458824, 1), Color(0.403369, 0.761889, 0.801823, 1), Color(0.737255, 0.890196, 0.894118, 1), Color(0.403922, 0.760784, 0.8, 1), Color(0.819608, 0.0980392, 0.364706, 1), Color(0.279625, 0.11432, 0.275161, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yq6so"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:environment:sky:sky_material:sky_top_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.581293, 0.913401, 0.941485, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:environment:sky:sky_material:sky_horizon_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.738593, 0.891657, 0.892836, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:environment:sky:sky_material:ground_bottom_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.951609, 0.932474, 0.895961, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:environment:sky:sky_material:ground_horizon_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.737255, 0.890196, 0.894118, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yq6so"]
+_data = {
+&"RESET": SubResource("Animation_yq6so"),
+&"normal": SubResource("Animation_2f3dj")
+}
 
 [sub_resource type="Animation" id="Animation_vxglm"]
 length = 0.001
@@ -155,22 +268,29 @@ script = ExtResource("1_muem4")
 seconds_per_day = 24.0
 hours = null
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="env" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dp3eg")
 
+[node name="env_anim" type="AnimationPlayer" parent="env"]
+libraries = {
+&"": SubResource("AnimationLibrary_yq6so")
+}
+script = ExtResource("3_og1vs")
+
 [node name="pivot" type="Node3D" parent="."]
-transform = Transform3D(0.729721, 0.683745, 0, -0.683745, 0.729721, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(-0.729721, 0.683745, 6.37942e-08, 0.683745, 0.729721, -5.97749e-08, -8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="directional_light" type="Node3D" parent="pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("2_y6deb")
 
 [node name="sun" type="DirectionalLight3D" parent="pivot/directional_light"]
-transform = Transform3D(-0.272417, 0.210577, -0.938854, -0.960497, -0.117186, 0.252413, -0.0568678, 0.970528, 0.234182, 0, 0, 0)
+transform = Transform3D(-0.467453, 0.62784, -0.622339, -0.873944, -0.222233, 0.432242, 0.133075, 0.745942, 0.652581, 0, 0, 0)
 light_color = Color(0.886725, 0.843523, 0.758978, 1)
 light_energy = 1.00021
 shadow_enabled = true
 
-[node name="sun" type="AnimationPlayer" parent="pivot/directional_light/sun"]
+[node name="sun_anim" type="AnimationPlayer" parent="pivot/directional_light/sun"]
 libraries = {
 &"": SubResource("AnimationLibrary_vxglm")
 }
@@ -181,7 +301,7 @@ transform = Transform3D(-0.225234, 0.2827, 0.932389, -0.439117, 0.824819, -0.356
 light_color = Color(0.0925025, 0.238244, 0.378248, 1)
 shadow_enabled = true
 
-[node name="animation" type="AnimationPlayer" parent="pivot/directional_light/moon"]
+[node name="moon_anim" type="AnimationPlayer" parent="pivot/directional_light/moon"]
 libraries = {
 &"": SubResource("AnimationLibrary_og1vs")
 }
