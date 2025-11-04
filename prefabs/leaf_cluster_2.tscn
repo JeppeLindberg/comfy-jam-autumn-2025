@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1euqkmxap1ig"]
+
+[ext_resource type="Script" uid="uid://bsqn3epceykpi" path="res://scripts/leaf_cluster.gd" id="1_dmfn1"]
+[ext_resource type="PackedScene" uid="uid://bqgcce61aw267" path="res://prefabs/leaf_1.tscn" id="2_2xtw4"]
+[ext_resource type="Script" uid="uid://cfvtp8h4cp1u6" path="res://scripts/leaf.gd" id="3_jecnc"]
+
+[node name="leaf_cluster_2" type="Node3D" groups=["leaf_cluster"]]
+top_level = true
+script = ExtResource("1_dmfn1")
+
+[node name="scaler" type="Node3D" parent="."]
+
+[node name="leaf_3" parent="scaler" groups=["leaf"] instance=ExtResource("2_2xtw4")]
+transform = Transform3D(1.30761, -0.919693, 1.07415, 0.673821, 1.69147, 0.627978, -1.24322, -0.0505555, 1.47015, -0.652563, 0.0896857, -0.345874)
+script = ExtResource("3_jecnc")
+
+[node name="leafs" type="Node3D" parent="scaler" groups=["leaf"]]
+transform = Transform3D(1.22117, -0.48017, -1.2158e-07, 0.411076, 1.04545, 0.678141, -0.248153, -0.631104, 1.12337, -0.243948, -0.119022, -0.10629)
+script = ExtResource("3_jecnc")
+
+[node name="leaf_1" parent="scaler/leafs" instance=ExtResource("2_2xtw4")]
+transform = Transform3D(1.27863, -0.121957, -0.26843, -0.0853302, 0.99046, -0.856466, 0.282217, 0.852019, 0.957207, 0, 0, 0)
+
+[node name="leaf_2" parent="scaler/leafs" instance=ExtResource("2_2xtw4")]
+transform = Transform3D(0.783005, 1.11002, -0.498566, -1.17611, 0.842464, 0.0285778, 0.312195, 0.389768, 1.3581, 0.41402, 0.0469933, -0.323418)
+
+[node name="leaf_3" parent="scaler/leafs" instance=ExtResource("2_2xtw4")]
+transform = Transform3D(1.02846, 0.526127, 0.272815, -0.563819, 1.03695, 0.125716, -0.182607, -0.238511, 1.14836, 0.0887774, 0.163313, -0.666692)
+
+[node name="leafs2" type="Node3D" parent="scaler" groups=["leaf"]]
+transform = Transform3D(1.01656, 0.49352, -0.666981, 0.0120469, 1.04593, 0.792282, 0.829624, -0.619911, 0.805766, 0.632275, -0.0165746, -0.70931)
+script = ExtResource("3_jecnc")
+
+[node name="leaf_1" parent="scaler/leafs2" instance=ExtResource("2_2xtw4")]
+transform = Transform3D(1.27863, -0.121957, -0.26843, -0.0853302, 0.99046, -0.856466, 0.282217, 0.852019, 0.957207, -0.050839, 0.032197, 0.240068)
+
+[node name="leaf_2" parent="scaler/leafs2" instance=ExtResource("2_2xtw4")]
+transform = Transform3D(0.783005, 1.11002, -0.498566, -1.17611, 0.842464, 0.0285778, 0.312195, 0.389768, 1.3581, 0.562966, 0.0591774, -0.268996)
+
+[node name="leaf_4" parent="scaler/leafs2" instance=ExtResource("2_2xtw4")]
+transform = Transform3D(1.80893, -0.283153, 0.2429, 0.165753, 1.68737, 0.732601, -0.334218, -0.695703, 1.67801, 0.221918, -0.0369435, -0.59022)
+
+[node name="leaf_3" parent="scaler/leafs2" instance=ExtResource("2_2xtw4")]
+transform = Transform3D(1.1518, -0.088813, 0.272815, 0.0611131, 1.17874, 0.125716, -0.280323, -0.107942, 1.14836, -0.00913426, 0.247169, -0.652612)
+
+[node name="leaf_1" parent="scaler" groups=["leaf"] instance=ExtResource("2_2xtw4")]
+transform = Transform3D(-0.201272, 0.5366, -0.819482, -0.253094, 0.779705, 0.572716, 0.946273, 0.322678, -0.0211229, 0.633031, 0.103547, -0.147828)
+script = ExtResource("3_jecnc")

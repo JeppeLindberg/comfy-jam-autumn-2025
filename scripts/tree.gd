@@ -3,6 +3,7 @@ extends Node3D
 
 var cards
 var stats
+var seed_anchor
 
 @export var main: Node3D
 
@@ -17,6 +18,7 @@ var stats
 
 @export_range(0.0, 1.0) var growth = 1.0
 var prev_growth = 0.0
+var enable_grow = false
 
 @export var secs_to_full_grown = 13.0
 @export var stop_growing_at_hour = 20.0
@@ -28,16 +30,23 @@ func _ready():
 	if not Engine.is_editor_hint():
 		cards = get_node('/root/main/cards')
 		stats = get_node('/root/main/stats')
+		seed_anchor = get_node('/root/main/seed_anchor')
 
 		restart()
 
 func restart():
-	growth = 0.00
-	main.hours = 0.0
-
-	recreate()
+	enable_grow = false
+	if Engine.is_editor_hint():
+		recreate()
+	else:
+		if main.hour_of_day() > 1.0:
+			seed_anchor.begin()
+		main.fast_forward_to_next_day()
 
 func recreate():
+	if not Engine.is_editor_hint():
+		growth = 0.0
+
 	for child in get_children():
 		child.queue_free()
 
@@ -54,7 +63,7 @@ func recreate():
 		i += 1
 		if i > 100:
 			print('recursion blocker i')
-			return
+			break
 
 		var possible_new_parts = []
 		possible_new_parts.append_array(branch_prefabs)
@@ -66,7 +75,7 @@ func recreate():
 		while (connector == null) or (connector.max_sub_part_matter < new_tree_part.matter):
 			connector = _get_free_connectors().pick_random()
 			j += 1
-			if j > 100:
+			if j > 10:
 				# print('recursion blocker j')
 				connector = null
 				break
@@ -102,6 +111,7 @@ func recreate():
 		# print(matter_budget)
 	
 	prev_growth = -1.0
+	enable_grow = true
 
 func _get_free_connectors():
 	var connectors = main.get_children_in_group(self, 'connector')
@@ -135,19 +145,26 @@ func _done_growing():
 		cards.generate_cards()
 
 func _process(delta):
-	if not Engine.is_editor_hint():
-		growth += clampf(stats.get_growth_factor() *( 1.0/secs_to_full_grown )* delta, 0.0, 1.0)
-		if growth > 1.0:
-			growth = 1.0
+	visible = enable_grow
 
-	if (not Engine.is_editor_hint()) and (main.hour_of_day() >= stop_growing_at_hour):
-		_done_growing()
-	elif prev_growth != growth:
-		_update_growth()
-	elif growth > 0.01:
-		_done_growing()
+	if enable_grow:
+		if not Engine.is_editor_hint():
+			growth += clampf(stats.get_growth_factor() *( 1.0/secs_to_full_grown )* delta, 0.0, 1.0)
+			if growth > 1.0:
+				growth = 1.0
 
-	if Engine.is_editor_hint():
-		pass
-	
-	prev_growth = growth
+		if (not Engine.is_editor_hint()) and (main.hour_of_day() >= stop_growing_at_hour):
+			_done_growing()
+		elif prev_growth != growth:
+			_update_growth()
+		elif growth > 0.01:
+			_done_growing()
+
+		if Engine.is_editor_hint():
+			pass
+		
+		prev_growth = growth
+
+
+func _on_main_new_day_signal() -> void:
+	recreate()

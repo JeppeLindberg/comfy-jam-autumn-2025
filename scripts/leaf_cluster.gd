@@ -33,10 +33,9 @@ func set_growth(growth):
 	if self.is_queued_for_deletion():
 		return
 
-	var calc_growth = growth * 5.0 + 2.0
+	var calc_growth = pow(growth * 2.2, 1.8) + 2.5
 	calc_growth -= depth*1.0
 
 	for leaf in _get_main().get_children_in_group(self, 'leaf'):		
 		leaf.scale = leaf.get_base_scale() * clampf(calc_growth, 0.0, 1.0)
 		calc_growth -= 0.5
-
