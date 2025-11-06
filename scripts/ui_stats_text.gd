@@ -3,6 +3,9 @@ extends RichTextLabel
 
 @onready var stats = get_node('/root/main/stats')
 
+@export var green_hex = 'FFDD3D'
+@export var red_hex = 'EF6544'
+
 
 func update():
 	var replace_txt = ''
@@ -14,21 +17,21 @@ func update():
 			replace_txt += '+'
 		if self.text != '':
 			self.text += '\n'
-		self.text += '[color=green]'+replace_txt+' sun absorption[/color]'
+		self.text += '[color=#' + green_hex+ ']'+replace_txt+' sun absorption[/color]'
 	if stats.wind_resistance > 0:
 		replace_txt = ''
 		for i in range(stats.wind_resistance):
 			replace_txt += '+'
 		if self.text != '':
 			self.text += '\n'
-		self.text += '[color=green]'+replace_txt+' wind resistance[/color]'
+		self.text += '[color=#' + green_hex+ ']'+replace_txt+' wind resistance[/color]'
 	if stats.water_absorption > 0:
 		replace_txt = ''
 		for i in range(stats.water_absorption):
 			replace_txt += '+'
 		if self.text != '':
 			self.text += '\n'
-		self.text += '[color=green]'+replace_txt+' water absorption[/color]'
+		self.text += '[color=#' + green_hex+ ']'+replace_txt+' water absorption[/color]'
 
 	if stats.sun_absorption < 0:
 		replace_txt = ''
@@ -36,19 +39,19 @@ func update():
 			replace_txt += '-'
 		if self.text != '':
 			self.text += '\n'
-		self.text += '[color=red]'+replace_txt+' sun absorption[/color]'
+		self.text += '[color='+red_hex+']'+replace_txt+' sun absorption[/color]'
 	if stats.wind_resistance < 0:
 		replace_txt = ''
 		for i in range(-stats.wind_resistance):
 			replace_txt += '-'
 		if self.text != '':
 			self.text += '\n'
-		self.text += '[color=red]'+replace_txt+' wind resistance[/color]'
+		self.text += '[color='+red_hex+']'+replace_txt+' wind resistance[/color]'
 	if stats.water_absorption < 0:
 		replace_txt = ''
 		for i in range(-stats.water_absorption):
 			replace_txt += '-'
 		if self.text != '':
 			self.text += '\n'
-		self.text += '[color=red]'+replace_txt+' water absorption[/color]'
+		self.text += '[color='+red_hex+']'+replace_txt+' water absorption[/color]'
 		 

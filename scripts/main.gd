@@ -1,6 +1,8 @@
 @tool
 extends Node3D
 
+
+@export var generic_sprite_anchor: PackedScene
 @export var seconds_per_day = 30.0
 
 var time_dialation = 1.0
