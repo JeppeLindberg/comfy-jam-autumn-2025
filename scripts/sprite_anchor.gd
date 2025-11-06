@@ -15,12 +15,13 @@ func _process(_delta: float) -> void:
 	if (sprite_anchor == null) or (sprite_anchor.is_queued_for_deletion()):
 		if _get_sprites() == null:
 			return
-			
+
 		sprite_anchor = _get_main().generic_sprite_anchor.instantiate()
 		_get_sprites().add_child(sprite_anchor)
 		sprite_anchor.owner = get_tree().edited_scene_root
 		sprite_anchor.anchor_control = self
 		sprite_anchor.get_node('sprite').texture = texture;
+		sprite_anchor.update()
 
 func _get_main():
 	if main == self:

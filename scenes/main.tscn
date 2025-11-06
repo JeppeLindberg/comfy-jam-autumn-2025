@@ -621,6 +621,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 0
 alignment = 1
 
 [node name="parameter_sun" parent="ui/panel/container/parameter_panel/parameter_container" instance=ExtResource("17_dp3eg")]
@@ -714,8 +715,32 @@ texture = ExtResource("33_dgi5k")
 
 [node name="sprites" type="Node2D" parent="."]
 
-[node name="sprite_anchor" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
-position = Vector2(1065, 324)
+[node name="@Node2D@167083" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+position = Vector2(1079, 24)
+script = ExtResource("33_5q0nq")
+
+[node name="@Node2D@167084" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+position = Vector2(1083, 24)
+script = ExtResource("33_5q0nq")
+
+[node name="@Node2D@167085" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+position = Vector2(1079, 54)
+script = ExtResource("33_5q0nq")
+
+[node name="@Node2D@167086" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+position = Vector2(1081, 54)
+script = ExtResource("33_5q0nq")
+
+[node name="@Node2D@167087" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+position = Vector2(1079, 84)
+script = ExtResource("33_5q0nq")
+
+[node name="@Node2D@167088" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+position = Vector2(1076, 84)
+script = ExtResource("33_5q0nq")
+
+[node name="@Node2D@167089" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+position = Vector2(1064, 324)
 script = ExtResource("33_5q0nq")
 
 [connection signal="new_day_signal" from="." to="tree" method="_on_main_new_day_signal"]
