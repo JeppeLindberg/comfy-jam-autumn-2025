@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0p80on5l55d1"]
+[gd_scene load_steps=12 format=3 uid="uid://d0p80on5l55d1"]
 
 [ext_resource type="Script" uid="uid://70ql1ici1jp1" path="res://scripts/ui_parameter.gd" id="1_dd1g0"]
 [ext_resource type="FontFile" uid="uid://c3culn2j8rwlk" path="res://fonts/textmachine_handwriting.ttf" id="2_q2gni"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dnvhufxoo2ivw" path="res://sprites/sun.png" id="3_js3ow"]
 [ext_resource type="Texture2D" uid="uid://bsxsfywg3qliq" path="res://sprites/meter.png" id="4_d8ngu"]
 [ext_resource type="Texture2D" uid="uid://cd1waukq805ij" path="res://sprites/pip.png" id="4_k3ver"]
+[ext_resource type="PackedScene" uid="uid://bia8jgginc4ij" path="res://prefabs/sprite_arrow_left.tscn" id="7_ep2qn"]
+[ext_resource type="PackedScene" uid="uid://d3wasn3a7imvc" path="res://prefabs/sprite_arrow_right.tscn" id="8_wpv81"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q2gni"]
 
@@ -14,7 +16,7 @@ bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_muem4"]
 
-[node name="parameter" type="HBoxContainer" node_paths=PackedStringArray("filler", "title", "image_anchor")]
+[node name="parameter" type="HBoxContainer" node_paths=PackedStringArray("filler", "title", "image_anchor", "arrow_left", "arrow_right")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 35.0
@@ -25,6 +27,8 @@ script = ExtResource("1_dd1g0")
 filler = NodePath("container/meter_bg_container/meter_point/filler")
 title = NodePath("container/title_container/title")
 image_anchor = NodePath("image_panel/center")
+arrow_left = NodePath("container/meter_bg_container/meter_point/center/point/arrow_left")
+arrow_right = NodePath("container/meter_bg_container/meter_point/center/point/arrow_right")
 
 [node name="image_panel" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0)
@@ -126,3 +130,27 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_8ygm6")
 texture = ExtResource("4_k3ver")
+
+[node name="arrow_left" type="CenterContainer" parent="container/meter_bg_container/meter_point/center/point"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_8ygm6")
+sprite_anchor_prefab = ExtResource("7_ep2qn")
+
+[node name="arrow_right" type="CenterContainer" parent="container/meter_bg_container/meter_point/center/point"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_8ygm6")
+sprite_anchor_prefab = ExtResource("8_wpv81")

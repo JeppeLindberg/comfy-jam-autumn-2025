@@ -36,6 +36,8 @@ func _get_main():
 	if main == self:
 		while not main.is_in_group('main'):
 			main = main.get_parent()
+			if main == null:
+				return null
 	
 	if main == self:
 		return null

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bia8jgginc4ij"]
+
+[ext_resource type="Script" uid="uid://vi7j22xcvq1q" path="res://scripts/screen_anchor_control.gd" id="1_xcctk"]
+[ext_resource type="Texture2D" uid="uid://eacxoqrwx85s" path="res://sprites/arrow.png" id="2_0r1r7"]
+[ext_resource type="Script" uid="uid://b2tmb43f7wxrg" path="res://scripts/hortizontal_movement.gd" id="2_8527e"]
+
+[node name="sprite_anchor" type="Node2D"]
+script = ExtResource("1_xcctk")
+
+[node name="visual" type="Node2D" parent="."]
+script = ExtResource("2_8527e")
+
+[node name="sprite" type="Sprite2D" parent="visual"]
+texture_filter = 1
+position = Vector2(-14, 1)
+texture = ExtResource("2_0r1r7")

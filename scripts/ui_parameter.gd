@@ -3,6 +3,7 @@ extends Control
 
 
 
+
 @export var filler: Panel
 @export var title: RichTextLabel
 
@@ -17,6 +18,12 @@ var prev_meter
 @export var wind_texture: Texture
 @export var rain_texture: Texture
 
+@export var associated_parameter = 'sun'
+
+@export var arrow_left: Control
+@export var arrow_right: Control
+
+var parameters = null
 
 
 func _update_meter():
@@ -36,4 +43,11 @@ func _process(_delta):
 		image_anchor.texture = wind_texture
 	if rain_texture != null:
 		image_anchor.texture = rain_texture
+
+	
+	if not Engine.is_editor_hint():
+		if parameters == null:
+			parameters = get_node('/root/main/parameters')
+		arrow_right.sprite_visible = parameters.positive == associated_parameter
+		arrow_left.sprite_visible = parameters.negative == associated_parameter
 

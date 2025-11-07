@@ -12,6 +12,7 @@ extends Node3D
 var prev_stats = {}
 
 func _process(_delta: float) -> void:
+
 	var stats_dir = {
 		'sun_absorption':sun_absorption,
 		'wind_resistance':wind_resistance,

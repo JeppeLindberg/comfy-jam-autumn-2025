@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://bb7m2rw06emdx"]
+[gd_scene load_steps=57 format=3 uid="uid://bb7m2rw06emdx"]
 
 [ext_resource type="Script" uid="uid://ck78o8i26mlcw" path="res://scripts/tree.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://ewvq7sqp0mes" path="res://scripts/main.gd" id="1_muem4"]
@@ -31,7 +31,6 @@
 [ext_resource type="Script" uid="uid://dw6h3p0rj8iau" path="res://scripts/ui_stats_text.gd" id="23_pm3ni"]
 [ext_resource type="PackedScene" uid="uid://b1euqkmxap1ig" path="res://prefabs/leaf_cluster_2.tscn" id="24_yq6so"]
 [ext_resource type="Script" uid="uid://b1wsaknt8lgf3" path="res://scripts/leaf_cluster_connector.gd" id="26_2f3dj"]
-[ext_resource type="Script" uid="uid://ceo5p8u1oc2jh" path="res://scripts/tree_part.gd" id="28_c6pm6"]
 [ext_resource type="Texture2D" uid="uid://dnvhufxoo2ivw" path="res://sprites/sun.png" id="31_fuf3a"]
 [ext_resource type="FontFile" uid="uid://c3culn2j8rwlk" path="res://fonts/textmachine_handwriting.ttf" id="31_j8jky"]
 [ext_resource type="Texture2D" uid="uid://wbrng1ypsmad" path="res://sprites/wind.png" id="32_pibwh"]
@@ -39,6 +38,8 @@
 [ext_resource type="Script" uid="uid://vi7j22xcvq1q" path="res://scripts/screen_anchor_control.gd" id="33_5q0nq"]
 [ext_resource type="Texture2D" uid="uid://cbvfieeb05h5g" path="res://sprites/sidebar.png" id="33_dgi5k"]
 [ext_resource type="Texture2D" uid="uid://dkwo1u2iovi11" path="res://sprites/rain.png" id="33_pibwh"]
+[ext_resource type="PackedScene" uid="uid://bia8jgginc4ij" path="res://prefabs/sprite_arrow_left.tscn" id="39_5he1u"]
+[ext_resource type="PackedScene" uid="uid://d3wasn3a7imvc" path="res://prefabs/sprite_arrow_right.tscn" id="40_5poiv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jbj1t"]
 sky_top_color = Color(0.581293, 0.913401, 0.941485, 1)
@@ -353,6 +354,7 @@ vert_curve = SubResource("Curve_tel4y")
 [node name="anchor" type="Node3D" parent="seed_anchor"]
 
 [node name="tree" type="Node3D" parent="." node_paths=PackedStringArray("main") groups=["tree"]]
+visible = false
 script = ExtResource("1_0wfyh")
 main = NodePath("..")
 growth_scale = SubResource("Curve_jkv2x")
@@ -361,42 +363,33 @@ branch_prefabs = Array[PackedScene]([ExtResource("5_muem4"), ExtResource("6_dp3e
 leaf_cluster_prefabs = Array[PackedScene]([ExtResource("23_2wyq8"), ExtResource("24_yq6so")])
 secs_to_full_grown = 20.0
 
-[node name="stump" type="Node3D" parent="tree" groups=["tree_part"] instance=ExtResource("1_o5qli")]
+[node name="stump" parent="tree" groups=["tree_part"] instance=ExtResource("1_o5qli")]
 transform = Transform3D(0.935884, 0, 0, 0, 0.99881, 0, 0, 0, 0.935884, 0, 0, 0)
 top_level = true
-script = ExtResource("28_c6pm6")
-stump = true
-matter = 3.0
 
 [node name="connector_3" type="Node3D" parent="tree/stump" groups=["connector"]]
 transform = Transform3D(0.995456, -0.0939571, -0.0154585, 0.0952203, 0.982251, 0.161607, 9.31323e-10, -0.162344, 0.986734, -0.160268, 3.44576, 0)
 script = ExtResource("17_muem4")
 
-[node name="branch" type="Node3D" parent="tree/stump/connector_3" groups=["tree_part"] instance=ExtResource("10_jscy8")]
+[node name="branch" parent="tree/stump/connector_3" groups=["tree_part"] instance=ExtResource("10_jscy8")]
 transform = Transform3D(0.995456, -0.0939601, -0.015459, 0.0952233, 0.982282, 0.161415, 1.85557e-05, -0.162153, 0.986766, -0.149992, 3.44166, 0)
 top_level = true
-script = ExtResource("28_c6pm6")
-matter = 2.0
 
 [node name="connector_7" type="Node3D" parent="tree/stump/connector_3/branch" groups=["connector"]]
 transform = Transform3D(0.978643, 0.0777261, 0.190308, -0.0633931, 0.994754, -0.0802884, -0.19555, 0.0665096, 0.978436, -0.0322904, 2.03461, 0.063557)
 script = ExtResource("17_muem4")
 
-[node name="branch" type="Node3D" parent="tree/stump/connector_3/branch/connector_7" groups=["tree_part"] instance=ExtResource("6_dp3eg")]
+[node name="branch" parent="tree/stump/connector_3/branch/connector_7" groups=["tree_part"] instance=ExtResource("6_dp3eg")]
 transform = Transform3D(0.983175, -0.0171221, 0.181861, -0.00064493, 0.995266, 0.0971899, -0.182665, -0.0956719, 0.978509, -0.374291, 5.4474, -0.267203)
 top_level = true
-script = ExtResource("28_c6pm6")
-matter = 1.7
 
 [node name="connector_9" type="Node3D" parent="tree/stump/connector_3/branch/connector_7/branch" groups=["connector"]]
 transform = Transform3D(0.991794, -0.118916, -0.0469328, 0.123661, 0.985493, 0.116238, 0.0324295, -0.121088, 0.992112, -0.0176945, 0.993458, 0.0150529)
 script = ExtResource("17_muem4")
 
-[node name="branch" type="Node3D" parent="tree/stump/connector_3/branch/connector_7/branch/connector_9" groups=["tree_part"] instance=ExtResource("8_gqmmt")]
+[node name="branch" parent="tree/stump/connector_3/branch/connector_7/branch/connector_9" groups=["tree_part"] instance=ExtResource("8_gqmmt")]
 transform = Transform3D(0.975008, -0.15581, 0.131769, 0.12509, 0.969136, 0.2113, -0.160625, -0.191048, 0.964405, -0.40596, 6.43763, -0.344288)
 top_level = true
-script = ExtResource("28_c6pm6")
-matter = 1.5
 
 [node name="leaf_connector_11" type="Node3D" parent="tree/stump/connector_3/branch/connector_7/branch/connector_9/branch" groups=["leaf_cluster_connector"]]
 transform = Transform3D(1, 0, 0, 0, 0.643135, -0.765753, 0, 0.765753, 0.643135, 2.72561e-08, 1.81487, -0.0911098)
@@ -410,11 +403,9 @@ script = ExtResource("26_2f3dj")
 transform = Transform3D(0.991794, -0.112324, 0.0610488, 0.123661, 0.72177, -0.680997, 0.0324295, 0.682958, 0.729737, 0.0440303, 0.487397, 0.0772642)
 script = ExtResource("17_muem4")
 
-[node name="branch" type="Node3D" parent="tree/stump/connector_3/branch/connector_7/branch/connector_12" groups=["tree_part"] instance=ExtResource("8_gqmmt")]
+[node name="branch" parent="tree/stump/connector_3/branch/connector_7/branch/connector_12" groups=["tree_part"] instance=ExtResource("8_gqmmt")]
 transform = Transform3D(0.975008, 0.00141129, 0.203583, 0.12509, 0.784801, -0.604484, -0.160625, 0.619746, 0.765011, -0.325295, 5.93998, -0.246273)
 top_level = true
-script = ExtResource("28_c6pm6")
-matter = 1.5
 
 [node name="leaf_connector_13" type="Node3D" parent="tree/stump/connector_3/branch/connector_7/branch/connector_12/branch" groups=["leaf_cluster_connector"]]
 transform = Transform3D(1, 0, 0, 0, 0.643135, -0.765753, 0, 0.765753, 0.643135, 2.72561e-08, 1.81487, -0.0911098)
@@ -436,11 +427,9 @@ script = ExtResource("26_2f3dj")
 transform = Transform3D(0.912123, -0.00158859, 0.409914, -0.127979, 0.948904, 0.28845, -0.389427, -0.315562, 0.865313, -0.125279, 1.09208, -0.0962601)
 script = ExtResource("17_muem4")
 
-[node name="branch" type="Node3D" parent="tree/stump/connector_3/branch/connector_5" groups=["tree_part"] instance=ExtResource("8_gqmmt")]
+[node name="branch" parent="tree/stump/connector_3/branch/connector_5" groups=["tree_part"] instance=ExtResource("8_gqmmt")]
 transform = Transform3D(0.926023, -0.085862, 0.367572, -0.101715, 0.881003, 0.462047, -0.363504, -0.465254, 0.807096, -0.375826, 4.48692, -0.272073)
 top_level = true
-script = ExtResource("28_c6pm6")
-matter = 1.5
 
 [node name="leaf_connector_6" type="Node3D" parent="tree/stump/connector_3/branch/connector_5/branch" groups=["leaf_cluster_connector"]]
 transform = Transform3D(-0.915971, 0.307254, 0.258054, 0.0741605, 0.761693, -0.64368, -0.394332, -0.570455, -0.720475, -0.157901, 1.00561, 0.00813886)
@@ -454,11 +443,9 @@ script = ExtResource("26_2f3dj")
 transform = Transform3D(0.98745, 0.156461, -0.0215188, -0.157934, 0.978241, -0.134542, 0, 0.136252, 0.990674, 0.206574, 3.43908, 0)
 script = ExtResource("17_muem4")
 
-[node name="branch" type="Node3D" parent="tree/stump/connector_0" groups=["tree_part"] instance=ExtResource("8_gqmmt")]
+[node name="branch" parent="tree/stump/connector_0" groups=["tree_part"] instance=ExtResource("8_gqmmt")]
 transform = Transform3D(0.987449, 0.156465, -0.0215193, -0.157937, 0.978262, -0.134382, 2.54828e-05, 0.136094, 0.990696, 0.193329, 3.43499, 0)
 top_level = true
-script = ExtResource("28_c6pm6")
-matter = 1.5
 
 [node name="leaf_connector_2" type="Node3D" parent="tree/stump/connector_0/branch" groups=["leaf_cluster_connector"]]
 transform = Transform3D(1, 0, 0, 0, 0.643135, -0.765753, 0, 0.765753, 0.643135, 2.72561e-08, 1.81487, -0.0911098)
@@ -498,7 +485,7 @@ grow_vertical = 2
 theme_override_constants/separation = 5
 
 [node name="parameter_panel" type="Panel" parent="ui/panel/container"]
-self_modulate = Color(0.223529, 0.0470588, 0.0784314, 1)
+self_modulate = Color(0.027451, 0.0196078, 0.0784314, 1)
 custom_minimum_size = Vector2(0, 98)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_muem4")
@@ -523,15 +510,17 @@ layout_mode = 2
 meter = 0.035
 title_tex = "Wind"
 wind_texture = ExtResource("32_pibwh")
+associated_parameter = "wind"
 
 [node name="parameter_rain" parent="ui/panel/container/parameter_panel/parameter_container" instance=ExtResource("17_dp3eg")]
 layout_mode = 2
 meter = -0.05
 title_tex = "Rain"
 rain_texture = ExtResource("33_pibwh")
+associated_parameter = "rain"
 
 [node name="stats" type="Panel" parent="ui/panel/container"]
-self_modulate = Color(0.223529, 0.0470588, 0.0784314, 1)
+self_modulate = Color(0.027451, 0.0196078, 0.0784314, 1)
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_muem4")
@@ -607,43 +596,67 @@ texture = ExtResource("33_dgi5k")
 
 [node name="sprites" type="Node2D" parent="."]
 
-[node name="@Node2D@23182" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="sprite_anchor" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(997, 17)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@23183" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@35090" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(1079, 22)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@23184" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@35091" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(1083, 22)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@23185" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@35092" type="Node2D" parent="sprites" instance=ExtResource("39_5he1u")]
+position = Vector2(1083, 22)
+script = ExtResource("33_5q0nq")
+
+[node name="@Node2D@35093" type="Node2D" parent="sprites" instance=ExtResource("40_5poiv")]
+position = Vector2(1083, 22)
+script = ExtResource("33_5q0nq")
+
+[node name="@Node2D@35094" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(997, 49)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@23186" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@35095" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(1079, 54)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@23187" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@35096" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(1081, 54)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@23188" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@35097" type="Node2D" parent="sprites" instance=ExtResource("39_5he1u")]
+position = Vector2(1081, 54)
+script = ExtResource("33_5q0nq")
+
+[node name="@Node2D@35098" type="Node2D" parent="sprites" instance=ExtResource("40_5poiv")]
+position = Vector2(1081, 54)
+script = ExtResource("33_5q0nq")
+
+[node name="@Node2D@35099" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(997, 81)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@23189" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@35100" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(1079, 86)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@23190" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@35101" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(1076, 86)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@23191" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@35102" type="Node2D" parent="sprites" instance=ExtResource("39_5he1u")]
+position = Vector2(1076, 86)
+script = ExtResource("33_5q0nq")
+
+[node name="@Node2D@35103" type="Node2D" parent="sprites" instance=ExtResource("40_5poiv")]
+position = Vector2(1076, 86)
+script = ExtResource("33_5q0nq")
+
+[node name="@Node2D@35104" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(1064, 324)
 script = ExtResource("33_5q0nq")
 
