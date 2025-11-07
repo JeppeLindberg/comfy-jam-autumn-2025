@@ -57,6 +57,7 @@ theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
 [node name="title" type="RichTextLabel" parent="container/title_container"]
+self_modulate = Color(1, 0.956863, 0.690196, 1)
 texture_filter = 1
 custom_minimum_size = Vector2(0, 11)
 layout_mode = 2
