@@ -5,7 +5,7 @@ extends Node3D
 
 @export var sun_absorption: int = 0
 @export var wind_resistance: int = 0
-@export var water_absorption: int = 0
+@export var rain_absorption: int = 0
 
 @export var stats_text: RichTextLabel
 
@@ -15,7 +15,7 @@ func _process(_delta: float) -> void:
 	var stats_dir = {
 		'sun_absorption':sun_absorption,
 		'wind_resistance':wind_resistance,
-		'water_absorption':water_absorption
+		'rain_absorption':rain_absorption
 	}
 
 	if stats_dir != prev_stats:
@@ -25,7 +25,7 @@ func _process(_delta: float) -> void:
 
 
 func _update_stats():
-	print('sun_absorption: '+str(sun_absorption)+' wind_resistance: '+str(wind_resistance)+' water_absorption: '+str(water_absorption))
+	print('sun_absorption: '+str(sun_absorption)+' wind_resistance: '+str(wind_resistance)+' rain_absorption: '+str(rain_absorption))
 	stats_text.update()
 
 
@@ -36,9 +36,9 @@ func get_growth_factor():
 	var wind_factor_calc = (wind_resistance + 3.0) * inverse_lerp(-1.0, 1.0, parameters.wind_amount)
 	wind_factor_calc = clampf(wind_factor_calc, 0.0, 10.0)
 	
-	var water_factor_calc = (water_absorption + 3.0) * inverse_lerp(-1.0, 1.0, parameters.water_amount)
-	water_factor_calc = clampf(water_factor_calc, 0.0, 10.0)
+	var rain_factor_calc = (rain_absorption + 3.0) * inverse_lerp(-1.0, 1.0, parameters.rain_amount)
+	rain_factor_calc = clampf(rain_factor_calc, 0.0, 10.0)
 	
-	return main.time_dialation * clampf((sun_factor_calc + wind_factor_calc + water_factor_calc) / 9.0, 0.0, 10.0)
+	return main.time_dialation * clampf((sun_factor_calc + wind_factor_calc + rain_factor_calc) / 9.0, 0.0, 10.0)
 
 

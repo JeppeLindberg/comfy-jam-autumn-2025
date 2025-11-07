@@ -25,13 +25,13 @@ func update():
 		if self.text != '':
 			self.text += '\n'
 		self.text += '[color=#' + green_hex+ ']'+replace_txt+' wind resistance[/color]'
-	if stats.water_absorption > 0:
+	if stats.rain_absorption > 0:
 		replace_txt = ''
-		for i in range(stats.water_absorption):
+		for i in range(stats.rain_absorption):
 			replace_txt += '+'
 		if self.text != '':
 			self.text += '\n'
-		self.text += '[color=#' + green_hex+ ']'+replace_txt+' water absorption[/color]'
+		self.text += '[color=#' + green_hex+ ']'+replace_txt+' rain absorption[/color]'
 
 	if stats.sun_absorption < 0:
 		replace_txt = ''
@@ -47,11 +47,11 @@ func update():
 		if self.text != '':
 			self.text += '\n'
 		self.text += '[color='+red_hex+']'+replace_txt+' wind resistance[/color]'
-	if stats.water_absorption < 0:
+	if stats.rain_absorption < 0:
 		replace_txt = ''
-		for i in range(-stats.water_absorption):
+		for i in range(-stats.rain_absorption):
 			replace_txt += '-'
 		if self.text != '':
 			self.text += '\n'
-		self.text += '[color='+red_hex+']'+replace_txt+' water absorption[/color]'
+		self.text += '[color='+red_hex+']'+replace_txt+' rain absorption[/color]'
 		 

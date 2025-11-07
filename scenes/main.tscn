@@ -327,11 +327,11 @@ script = ExtResource("3_og1vs")
 transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, 0, 5.46399, 44.5492)
 fov = 20.0
 
-[node name="parameters" type="Node3D" parent="." node_paths=PackedStringArray("sun_ui_parameter", "wind_ui_parameter", "water_ui_parameter")]
+[node name="parameters" type="Node3D" parent="." node_paths=PackedStringArray("sun_ui_parameter", "wind_ui_parameter", "rain_ui_parameter")]
 script = ExtResource("2_dp3eg")
 sun_ui_parameter = NodePath("../ui/panel/container/parameter_panel/parameter_container/parameter_sun")
 wind_ui_parameter = NodePath("../ui/panel/container/parameter_panel/parameter_container/parameter_wind")
-water_ui_parameter = NodePath("../ui/panel/container/parameter_panel/parameter_container/parameter_water")
+rain_ui_parameter = NodePath("../ui/panel/container/parameter_panel/parameter_container/parameter_rain")
 sun_amount_day_curve = SubResource("Curve_y6deb")
 
 [node name="stats" type="Node3D" parent="." node_paths=PackedStringArray("stats_text")]
@@ -638,7 +638,7 @@ meter = 0.035
 title_tex = "Wind"
 wind_texture = ExtResource("32_pibwh")
 
-[node name="parameter_water" parent="ui/panel/container/parameter_panel/parameter_container" instance=ExtResource("17_dp3eg")]
+[node name="parameter_rain" parent="ui/panel/container/parameter_panel/parameter_container" instance=ExtResource("17_dp3eg")]
 layout_mode = 2
 meter = -0.05
 title_tex = "Rain"

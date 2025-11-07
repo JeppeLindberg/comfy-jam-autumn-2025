@@ -6,9 +6,9 @@
 custom_minimum_size = Vector2(127.5, 136)
 script = ExtResource("1_j5ppj")
 card_text = "[color=green]+ wind resistance[/color]
-[color=red]- water absorption[/color]"
+[color=red]- rain absorption[/color]"
 wind_resistance_delta = 1
-water_absorption_delta = -1
+rain_absorption_delta = -1
 text_label = NodePath("text")
 
 [node name="center" type="CenterContainer" parent="."]

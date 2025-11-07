@@ -9,7 +9,7 @@ extends Button
 
 @export var sun_absorption_delta: int = 0
 @export var wind_resistance_delta: int = 0
-@export var water_absorption_delta: int = 0
+@export var rain_absorption_delta: int = 0
 
 @export var text_label: RichTextLabel
 
@@ -27,7 +27,7 @@ func _process(_delta: float) -> void:
 func _on_pressed() -> void:
 	stats.sun_absorption += sun_absorption_delta
 	stats.wind_resistance += wind_resistance_delta
-	stats.water_absorption += water_absorption_delta
+	stats.rain_absorption += rain_absorption_delta
 
 	cards.clear_cards()
 
