@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://bb7m2rw06emdx"]
+[gd_scene load_steps=55 format=3 uid="uid://bb7m2rw06emdx"]
 
 [ext_resource type="Script" uid="uid://ck78o8i26mlcw" path="res://scripts/tree.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://ewvq7sqp0mes" path="res://scripts/main.gd" id="1_muem4"]
@@ -37,6 +37,7 @@
 [ext_resource type="Script" uid="uid://sawq6tp5abn8" path="res://scripts/sprite_anchor.gd" id="32_qkpxi"]
 [ext_resource type="Script" uid="uid://vi7j22xcvq1q" path="res://scripts/screen_anchor_control.gd" id="33_5q0nq"]
 [ext_resource type="Texture2D" uid="uid://cbvfieeb05h5g" path="res://sprites/sidebar.png" id="33_dgi5k"]
+[ext_resource type="Texture2D" uid="uid://dkwo1u2iovi11" path="res://sprites/rain.png" id="33_pibwh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jbj1t"]
 sky_top_color = Color(0.581293, 0.913401, 0.941485, 1)
@@ -640,7 +641,8 @@ wind_texture = ExtResource("32_pibwh")
 [node name="parameter_water" parent="ui/panel/container/parameter_panel/parameter_container" instance=ExtResource("17_dp3eg")]
 layout_mode = 2
 meter = -0.05
-title_tex = "Water"
+title_tex = "Rain"
+rain_texture = ExtResource("33_pibwh")
 
 [node name="stats" type="Panel" parent="ui/panel/container"]
 self_modulate = Color(0.223529, 0.0470588, 0.0784314, 1)

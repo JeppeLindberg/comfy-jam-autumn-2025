@@ -15,6 +15,7 @@ var prev_meter
 
 @export var full_sun_texture: Texture
 @export var wind_texture: Texture
+@export var rain_texture: Texture
 
 
 
@@ -33,4 +34,6 @@ func _process(_delta):
 		image_anchor.texture = full_sun_texture
 	if wind_texture != null:
 		image_anchor.texture = wind_texture
+	if rain_texture != null:
+		image_anchor.texture = rain_texture
 
