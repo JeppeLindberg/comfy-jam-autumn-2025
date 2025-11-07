@@ -20,8 +20,9 @@ func _process(_delta: float) -> void:
 		_get_sprites().add_child(sprite_anchor)
 		sprite_anchor.owner = get_tree().edited_scene_root
 		sprite_anchor.anchor_control = self
-		sprite_anchor.get_node('sprite').texture = texture;
 		sprite_anchor.update()
+	if sprite_anchor != null:
+		sprite_anchor.get_node('sprite').texture = texture;
 
 func _get_main():
 	if main == self:

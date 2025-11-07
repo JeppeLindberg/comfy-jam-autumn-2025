@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0p80on5l55d1"]
+[gd_scene load_steps=10 format=3 uid="uid://d0p80on5l55d1"]
 
 [ext_resource type="Script" uid="uid://70ql1ici1jp1" path="res://scripts/ui_parameter.gd" id="1_dd1g0"]
 [ext_resource type="FontFile" uid="uid://c3culn2j8rwlk" path="res://fonts/textmachine_handwriting.ttf" id="2_q2gni"]
 [ext_resource type="Script" uid="uid://sawq6tp5abn8" path="res://scripts/sprite_anchor.gd" id="3_8ygm6"]
+[ext_resource type="Texture2D" uid="uid://dnvhufxoo2ivw" path="res://sprites/sun.png" id="3_js3ow"]
 [ext_resource type="Texture2D" uid="uid://bsxsfywg3qliq" path="res://sprites/meter.png" id="4_d8ngu"]
 [ext_resource type="Texture2D" uid="uid://cd1waukq805ij" path="res://sprites/pip.png" id="4_k3ver"]
 
@@ -13,7 +14,7 @@ bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_muem4"]
 
-[node name="parameter" type="HBoxContainer" node_paths=PackedStringArray("filler", "title")]
+[node name="parameter" type="HBoxContainer" node_paths=PackedStringArray("filler", "title", "image_anchor")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 35.0
@@ -23,8 +24,10 @@ alignment = 2
 script = ExtResource("1_dd1g0")
 filler = NodePath("container/meter_bg_container/meter_point/filler")
 title = NodePath("container/title_container/title")
+image_anchor = NodePath("image_panel/center")
 
 [node name="image_panel" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_q2gni")
@@ -38,6 +41,8 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("3_8ygm6")
+texture = ExtResource("3_js3ow")
 
 [node name="container" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -58,7 +63,7 @@ layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("2_q2gni")
 theme_override_font_sizes/normal_font_size = 8
 text = "Sun"
-vertical_alignment = 1
+vertical_alignment = 2
 
 [node name="meter_bg_container" type="MarginContainer" parent="container"]
 layout_mode = 2

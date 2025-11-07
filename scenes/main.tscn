@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bb7m2rw06emdx"]
+[gd_scene load_steps=54 format=3 uid="uid://bb7m2rw06emdx"]
 
 [ext_resource type="Script" uid="uid://ck78o8i26mlcw" path="res://scripts/tree.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://ewvq7sqp0mes" path="res://scripts/main.gd" id="1_muem4"]
@@ -31,7 +31,9 @@
 [ext_resource type="Script" uid="uid://dw6h3p0rj8iau" path="res://scripts/ui_stats_text.gd" id="23_pm3ni"]
 [ext_resource type="PackedScene" uid="uid://b1euqkmxap1ig" path="res://prefabs/leaf_cluster_2.tscn" id="24_yq6so"]
 [ext_resource type="Script" uid="uid://b1wsaknt8lgf3" path="res://scripts/leaf_cluster_connector.gd" id="26_2f3dj"]
+[ext_resource type="Texture2D" uid="uid://dnvhufxoo2ivw" path="res://sprites/sun.png" id="31_fuf3a"]
 [ext_resource type="FontFile" uid="uid://c3culn2j8rwlk" path="res://fonts/textmachine_handwriting.ttf" id="31_j8jky"]
+[ext_resource type="Texture2D" uid="uid://wbrng1ypsmad" path="res://sprites/wind.png" id="32_pibwh"]
 [ext_resource type="Script" uid="uid://sawq6tp5abn8" path="res://scripts/sprite_anchor.gd" id="32_qkpxi"]
 [ext_resource type="Script" uid="uid://vi7j22xcvq1q" path="res://scripts/screen_anchor_control.gd" id="33_5q0nq"]
 [ext_resource type="Texture2D" uid="uid://cbvfieeb05h5g" path="res://sprites/sidebar.png" id="33_dgi5k"]
@@ -609,7 +611,7 @@ grow_vertical = 2
 theme_override_constants/separation = 5
 
 [node name="parameter_panel" type="Panel" parent="ui/panel/container"]
-self_modulate = Color(0.612402, 0.38127, 0.335364, 1)
+self_modulate = Color(0.223529, 0.0470588, 0.0784314, 1)
 custom_minimum_size = Vector2(0, 98)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_muem4")
@@ -621,17 +623,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 2
 alignment = 1
 
 [node name="parameter_sun" parent="ui/panel/container/parameter_panel/parameter_container" instance=ExtResource("17_dp3eg")]
 layout_mode = 2
 meter = 0.057
+full_sun_texture = ExtResource("31_fuf3a")
 
 [node name="parameter_wind" parent="ui/panel/container/parameter_panel/parameter_container" instance=ExtResource("17_dp3eg")]
 layout_mode = 2
 meter = 0.035
 title_tex = "Wind"
+wind_texture = ExtResource("32_pibwh")
 
 [node name="parameter_water" parent="ui/panel/container/parameter_panel/parameter_container" instance=ExtResource("17_dp3eg")]
 layout_mode = 2
@@ -715,31 +719,43 @@ texture = ExtResource("33_dgi5k")
 
 [node name="sprites" type="Node2D" parent="."]
 
-[node name="@Node2D@167083" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
-position = Vector2(1079, 24)
+[node name="sprite_anchor" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+position = Vector2(997, 17)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@167084" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
-position = Vector2(1083, 24)
+[node name="@Node2D@27564" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+position = Vector2(1079, 22)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@167085" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@27565" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+position = Vector2(1083, 22)
+script = ExtResource("33_5q0nq")
+
+[node name="@Node2D@27566" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+position = Vector2(997, 49)
+script = ExtResource("33_5q0nq")
+
+[node name="@Node2D@27567" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(1079, 54)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@167086" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@27568" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(1081, 54)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@167087" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
-position = Vector2(1079, 84)
+[node name="@Node2D@27569" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+position = Vector2(997, 81)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@167088" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
-position = Vector2(1076, 84)
+[node name="@Node2D@27570" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+position = Vector2(1079, 86)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@167089" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@27571" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+position = Vector2(1076, 86)
+script = ExtResource("33_5q0nq")
+
+[node name="@Node2D@27572" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(1064, 324)
 script = ExtResource("33_5q0nq")
 
