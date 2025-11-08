@@ -285,7 +285,7 @@ bg_color = Color(1, 1, 1, 1)
 [node name="main" type="Node3D" groups=["main"]]
 script = ExtResource("1_muem4")
 generic_sprite_anchor = ExtResource("2_5q0nq")
-seconds_per_day = 24.0
+seconds_per_day = 1.0
 
 [node name="env" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dp3eg")
@@ -464,7 +464,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="panel" type="Panel" parent="ui"]
-self_modulate = Color(0.223529, 0.0470588, 0.0784314, 1)
+self_modulate = Color(0.223529, 0.0470588, 0.0784314, 0)
 custom_minimum_size = Vector2(175, 0)
 layout_mode = 1
 anchors_preset = 11
@@ -553,7 +553,7 @@ fit_content = true
 script = ExtResource("23_pm3ni")
 
 [node name="card_panel" type="Panel" parent="ui/panel/container"]
-self_modulate = Color(0.612402, 0.38127, 0.335364, 1)
+self_modulate = Color(0.611765, 0.380392, 0.337255, 0)
 custom_minimum_size = Vector2(0, 136)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_muem4")
@@ -565,10 +565,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = -80
+theme_override_constants/margin_left = -79
 
 [node name="card_panel" type="Panel" parent="ui/panel/container/card_panel/margin"]
-self_modulate = Color(0.612402, 0.38127, 0.335364, 1)
+self_modulate = Color(0.611765, 0.380392, 0.337255, 0)
 custom_minimum_size = Vector2(0, 136)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_muem4")
@@ -600,63 +600,63 @@ texture = ExtResource("33_dgi5k")
 position = Vector2(997, 17)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@35090" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@67953" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(1079, 22)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@35091" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@67954" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(1083, 22)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@35092" type="Node2D" parent="sprites" instance=ExtResource("39_5he1u")]
+[node name="@Node2D@67955" type="Node2D" parent="sprites" instance=ExtResource("39_5he1u")]
 position = Vector2(1083, 22)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@35093" type="Node2D" parent="sprites" instance=ExtResource("40_5poiv")]
+[node name="@Node2D@67956" type="Node2D" parent="sprites" instance=ExtResource("40_5poiv")]
 position = Vector2(1083, 22)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@35094" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@67957" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(997, 49)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@35095" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@67958" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(1079, 54)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@35096" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@67959" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(1081, 54)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@35097" type="Node2D" parent="sprites" instance=ExtResource("39_5he1u")]
+[node name="@Node2D@67960" type="Node2D" parent="sprites" instance=ExtResource("39_5he1u")]
 position = Vector2(1081, 54)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@35098" type="Node2D" parent="sprites" instance=ExtResource("40_5poiv")]
+[node name="@Node2D@67961" type="Node2D" parent="sprites" instance=ExtResource("40_5poiv")]
 position = Vector2(1081, 54)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@35099" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@67962" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(997, 81)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@35100" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@67963" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(1079, 86)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@35101" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@67964" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(1076, 86)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@35102" type="Node2D" parent="sprites" instance=ExtResource("39_5he1u")]
+[node name="@Node2D@67965" type="Node2D" parent="sprites" instance=ExtResource("39_5he1u")]
 position = Vector2(1076, 86)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@35103" type="Node2D" parent="sprites" instance=ExtResource("40_5poiv")]
+[node name="@Node2D@67966" type="Node2D" parent="sprites" instance=ExtResource("40_5poiv")]
 position = Vector2(1076, 86)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@35104" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@67967" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(1064, 324)
 script = ExtResource("33_5q0nq")
 

@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://crlofm1hgg0cc"]
+[gd_scene load_steps=4 format=3 uid="uid://crlofm1hgg0cc"]
 
 [ext_resource type="Script" uid="uid://mb16bcpybgi1" path="res://scripts/ui_card.gd" id="1_j5ppj"]
+[ext_resource type="Script" uid="uid://sawq6tp5abn8" path="res://scripts/sprite_anchor.gd" id="2_jlcnh"]
+[ext_resource type="Texture2D" uid="uid://b3m311yx72x7j" path="res://sprites/card_placeholder.png" id="3_41xqt"]
 
 [node name="card_2" type="Button" node_paths=PackedStringArray("text_label")]
+self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(127.5, 136)
 script = ExtResource("1_j5ppj")
 card_text = "[color=green]+ wind resistance[/color]
@@ -21,8 +24,11 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("2_jlcnh")
+texture = ExtResource("3_41xqt")
 
 [node name="text" type="RichTextLabel" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
