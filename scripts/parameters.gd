@@ -31,10 +31,10 @@ func _ready() -> void:
 	set_positive_negative()
 
 func _process(delta: float) -> void:
-	time_since_last_reroll += delta
 
 	var speed = 1.0 / parameter_adjust_secs_for_full_meter
-	if main.time_dialation:
+	if main.time_dialation != 0.0:
+		time_since_last_reroll += delta
 		if positive == 'sun':
 			sun_meter += speed * delta
 		if positive == 'wind':
