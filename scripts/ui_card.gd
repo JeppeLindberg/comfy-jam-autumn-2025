@@ -4,6 +4,7 @@ extends Button
 @onready var stats = get_node('/root/main/stats')
 @onready var cards = get_node('/root/main/cards')
 @onready var tree = get_node('/root/main/tree')
+@onready var hover_sprite_anchor = get_node('hover_sprite_anchor')
 
 @export_multiline var card_text = 'text'
 
@@ -16,7 +17,7 @@ extends Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	hover_sprite_anchor.sprite_visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,7 +42,7 @@ func _on_button_up() -> void:
 	print('_on_button_up')
 
 func _on_mouse_exited() -> void:
-	print('_on_mouse_exited')	
+	hover_sprite_anchor.sprite_visible = false
 
 func _on_mouse_entered() -> void:
-	print('_on_mouse_entered')	
+	hover_sprite_anchor.sprite_visible = true
