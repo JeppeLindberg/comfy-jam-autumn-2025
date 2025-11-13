@@ -47,6 +47,33 @@
 [ext_resource type="PackedScene" uid="uid://bia8jgginc4ij" path="res://prefabs/sprite_arrow_left.tscn" id="39_5he1u"]
 [ext_resource type="PackedScene" uid="uid://d3wasn3a7imvc" path="res://prefabs/sprite_arrow_right.tscn" id="40_5poiv"]
 
+[sub_resource type="Animation" id="Animation_ty1g6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("wind:pitch_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("birds:pitch_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
 [sub_resource type="Animation" id="Animation_nvyfr"]
 resource_name = "normal"
 length = 50.0
@@ -76,37 +103,37 @@ tracks/1/keys = {
 "values": [1.0, 1.3, 0.7, 1.0]
 }
 
-[sub_resource type="Animation" id="Animation_ty1g6"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ty1g6"]
+_data = {
+&"RESET": SubResource("Animation_ty1g6"),
+&"normal": SubResource("Animation_nvyfr")
+}
+
+[sub_resource type="Animation" id="Animation_vc5cj"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("wind:pitch_scale")
+tracks/0/path = NodePath("wind:volume_db")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.0]
+"values": [-30.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("birds:pitch_scale")
+tracks/1/path = NodePath("birds:volume_db")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ty1g6"]
-_data = {
-&"RESET": SubResource("Animation_ty1g6"),
-&"normal": SubResource("Animation_nvyfr")
+"values": [-30.0]
 }
 
 [sub_resource type="Animation" id="Animation_txyw0"]
@@ -136,33 +163,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(-2, -2, -2),
 "update": 0,
 "values": [-20.0, -15.0, -20.0]
-}
-
-[sub_resource type="Animation" id="Animation_vc5cj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("wind:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-30.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("birds:volume_db")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-30.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vc5cj"]
@@ -748,67 +748,67 @@ texture = ExtResource("33_dgi5k")
 
 [node name="sprites" type="Node2D" parent="."]
 
-[node name="sprite_anchor" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@21764" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(997, 17)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@41416" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@21765" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(1079, 22)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@41417" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@21766" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(1083, 22)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@41418" type="Node2D" parent="sprites" instance=ExtResource("39_5he1u")]
+[node name="@Node2D@21767" type="Node2D" parent="sprites" instance=ExtResource("39_5he1u")]
 position = Vector2(1083, 22)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@41419" type="Node2D" parent="sprites" instance=ExtResource("40_5poiv")]
+[node name="@Node2D@21768" type="Node2D" parent="sprites" instance=ExtResource("40_5poiv")]
 position = Vector2(1083, 22)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@41420" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@21769" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(997, 49)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@41421" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@21770" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(1079, 54)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@41422" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@21771" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(1081, 54)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@41423" type="Node2D" parent="sprites" instance=ExtResource("39_5he1u")]
+[node name="@Node2D@21772" type="Node2D" parent="sprites" instance=ExtResource("39_5he1u")]
 position = Vector2(1081, 54)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@41424" type="Node2D" parent="sprites" instance=ExtResource("40_5poiv")]
+[node name="@Node2D@21773" type="Node2D" parent="sprites" instance=ExtResource("40_5poiv")]
 position = Vector2(1081, 54)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@41425" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@21774" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(997, 81)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@41426" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@21775" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(1079, 86)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@41427" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@21776" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(1076, 86)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@41428" type="Node2D" parent="sprites" instance=ExtResource("39_5he1u")]
+[node name="@Node2D@21777" type="Node2D" parent="sprites" instance=ExtResource("39_5he1u")]
 position = Vector2(1076, 86)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@41429" type="Node2D" parent="sprites" instance=ExtResource("40_5poiv")]
+[node name="@Node2D@21778" type="Node2D" parent="sprites" instance=ExtResource("40_5poiv")]
 position = Vector2(1076, 86)
 script = ExtResource("33_5q0nq")
 
-[node name="@Node2D@41430" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
+[node name="@Node2D@21779" type="Node2D" parent="sprites" instance=ExtResource("2_5q0nq")]
 position = Vector2(1064, 324)
 script = ExtResource("33_5q0nq")
 
